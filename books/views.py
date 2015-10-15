@@ -1,9 +1,9 @@
 from django.shortcuts import render
+from .forms import BookForm
+from .models import Book
 
 # Widoki - tu dzieje sie magia.
 
-from .forms import BookForm
-from .models import Book
 
 def home(request):
     """Strona glowna."""
@@ -13,8 +13,10 @@ def home(request):
         new_book = addBookForm.save(commit=False)
         new_book.save() # I zapisujemy do bazy danych. To wszystko.
 
+    books = Book.objects.all()
+    print books
 
     template = "home.html"
-    context = {"addBookForm" : addBookForm}
+    context = {"addBookForm":addBookForm, "books":books}
 
     return render(request, template, context)
