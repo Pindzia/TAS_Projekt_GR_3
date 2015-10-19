@@ -14,8 +14,7 @@ def home(request):
         new_book.save() # I zapisujemy do bazy danych. To wszystko.
 
     books = Book.objects.all()
-    print books
-
+    
     template = "home.html"
     context = {"addBookForm":addBookForm, "books":books}
 
