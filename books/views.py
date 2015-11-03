@@ -19,3 +19,7 @@ def home(request):
     context = {"addBookForm":addBookForm, "books":books}
 
     return render(request, template, context)
+
+
+# SKUP sie na interfejsach zdalnych
+# PyRo
