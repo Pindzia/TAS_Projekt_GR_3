@@ -7,7 +7,7 @@ import sys
 class database():
 
     def __init__(self, host, user, password, base):
-        """Connect to database"""
+        """ Connect to database """
         global con
 
         try:
