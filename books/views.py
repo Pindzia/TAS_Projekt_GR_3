@@ -1,15 +1,9 @@
 from django.shortcuts import render
-import Pyro4
+from __init__ import pyro
 # from .forms import BookForm
 # from .models import Book
 
 # Widoki - tu dzieje sie magia.
-
-
-def runpyro():
-    uri = input("Enter the uri of the library: ").strip()
-    library = Pyro4.Proxy(uri)
-    print "PyRo is running..."
 
 def get_test():
     print library.test()
@@ -21,11 +15,11 @@ def home(request):
     # if addBookForm.is_valid(): # Sprawdz, czy wpis jest poprawny.
     #     new_book = addBookForm.save(commit=False)
     #     new_book.save() # I zapisujemy do bazy danych. To wszystko.
-
     # books = Book.objects.all()
-
-    ev = "VAR"
     
+    ev = pyro.library.test() # tak odnosimy sie metod zawartych w pliku Pyro/library.py. Wystarczy przypisywac je do zmiennych, rejestrowac w "context" i mozemy je wyswietlac na stronie.
+
+
     template = "index.html"
     context = {'ev':ev}
 
