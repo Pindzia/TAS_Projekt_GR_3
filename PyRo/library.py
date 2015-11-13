@@ -9,13 +9,14 @@ class Library(object):
 
     def __init__(self):
         pass
-        # self.contents = []
 
     def test(self):
         return "Test przeszedl pomyslnie."
 
-    # def list_contents(self):
-    #     return self.contents
+    def get_book(self, id):
+        """ Przykladowa funkcja z zapytaniem do bazy. """
+        # book = mysql.get("SELECT tytul FROM Ksiazka WHERE idKsiazka=%s;") % (id)
+
 
 
 def main():
@@ -23,7 +24,6 @@ def main():
 
     # Establish database connection
     # mysql = database.database('localhost', 'root', 'root', 'tas')
-    # print mysql.get("SELECT tytul FROM Ksiazka WHERE idKsiazka=1;")
 
     # Establish PyRo connection
     library = Library()
