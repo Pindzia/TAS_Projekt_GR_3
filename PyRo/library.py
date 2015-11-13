@@ -5,25 +5,21 @@ import database
 
 
 class Library(object):
+    """ Zawiera metody odpytujace baze danych. """
+
     def __init__(self):
         pass
+        # self.contents = []
 
     def test(self):
         return "Test przeszedl pomyslnie."
 
-    def list_contents(self):
-        return self.contents
-
-    # def take(self, name, item):
-    #     self.contents.remove(item)
-    #     print "%s took the %s." % (name, item)
-
-    # def store(self, name, item):
-    #     self.contents.append(item)
-    #     print "%s stored the %s" % (name, item)
+    # def list_contents(self):
+    #     return self.contents
 
 
 def main():
+    """ Glowna funkcja, uruchamiana przy inicjalizacji PyRo. """
 
     # Establish database connection
     # mysql = database.database('localhost', 'root', 'root', 'tas')
@@ -38,6 +34,7 @@ def main():
             ns = False)
 
 
+# Uruchamia funkcje glowna.
 if __name__=="__main__":
     main()
 

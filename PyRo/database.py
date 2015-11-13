@@ -5,28 +5,29 @@ import _mysql
 import sys
 
 class database():
+    """ Obsluguje polaczenie oraz zapytania do bazy danych. """
 
     def __init__(self, host, user, password, base):
-        """ Connect to database """
+        """ Laczy z baza danych. """
         global con
 
         try:
             con = _mysql.connect(host, user, password, base)
             
-            print "Database connected."
+            print "Polaczono z baza danych."
         
         except _mysql.Error, e:
           
-            print "Error %d: %s" % (e.args[0], e.args[1])
+            print "Blad %d: %s" % (e.args[0], e.args[1])
             sys.exit(1)
 
     def get(self, question):
-        """Return database query."""
+        """ Odpytuje baze danych. """
 
         con.query(question)
         result = con.use_result()
         return result.fetch_row()[0]
 
     def add(self, question):
-        """Adds query to database."""
+        """ Modyfikuje baze danych. """
         con.query(question)

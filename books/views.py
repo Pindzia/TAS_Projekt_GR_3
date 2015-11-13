@@ -1,12 +1,10 @@
 from django.shortcuts import render
 from __init__ import pyro
-# from .forms import BookForm
-# from .models import Book
 
-# Widoki - tu dzieje sie magia.
 
 def get_test():
     print library.test()
+
 
 def home(request):
     """Strona glowna."""
