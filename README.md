@@ -1,12 +1,11 @@
 ## Księgarnia internetowa
 ## Projekt TAS 2015 Grupa 3
 
-a) Rafał Pingot
-b) Piotr Beczyński
-c) Maciej Sobolewski
-d) Joanna Malińska
-e) Prusiewicz Patryk
-f) Marcin Jadwiszczak
+a) Rafał Pingot  
+b) Piotr Beczyński  
+c) Maciej Sobolewski  
+d) Joanna Malińska  
+e) Prusiewicz Patryk  
 
 20.10 22.10 Faza 1: Przyrost części wspólnej | Joanna Malińska
 
