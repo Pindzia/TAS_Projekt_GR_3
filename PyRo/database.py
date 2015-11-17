@@ -4,7 +4,7 @@
 import _mysql
 import sys
 
-class database():
+class Database():
     """ Obsluguje polaczenie oraz zapytania do bazy danych. """
 
     def __init__(self, host, user, password, base):

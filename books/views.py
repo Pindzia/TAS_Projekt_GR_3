@@ -15,7 +15,7 @@ def home(request):
     #     new_book.save() # I zapisujemy do bazy danych. To wszystko.
     # books = Book.objects.all()
     
-    ev = pyro.library.test() # tak odnosimy sie metod zawartych w pliku Pyro/library.py. Wystarczy przypisywac je do zmiennych, rejestrowac w "context" i mozemy je wyswietlac na stronie.
+    ev = pyro.library.test() # tak odnosimy sie do metod zawartych w pliku PyRo/library.py. Wystarczy przypisywac je do zmiennych, rejestrowac w "context" i mozemy je wyswietlac na stronie.
 
 
     template = "index.html"

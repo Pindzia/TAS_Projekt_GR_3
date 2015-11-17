@@ -22,10 +22,10 @@ class Library(object):
 def main():
     """ Glowna funkcja, uruchamiana przy inicjalizacji PyRo. """
 
-    # Establish database connection
-    # mysql = database.database('localhost', 'root', 'root', 'tas')
+    # Polacz z baza danych
+    # mysql = database.Database('localhost', 'root', 'root', 'tas')
 
-    # Establish PyRo connection
+    # Polacz z PyRo
     library = Library()
     Pyro4.Daemon.serveSimple(
             {

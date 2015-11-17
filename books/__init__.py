@@ -8,5 +8,7 @@ class Startup():
         uri = "PYRO:example.library@localhost:59554".strip()
         self.library = Pyro4.Proxy(uri)
 
-
 pyro = Startup()
+
+
+
