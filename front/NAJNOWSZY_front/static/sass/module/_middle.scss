@@ -1,0 +1,96 @@
+.middle {
+  padding: 50px 0;
+  .sort {
+    ul {
+      height: auto;
+      padding: 0px 15px;
+      margin: 0;
+      border: 1px solid #be0c3e;
+      //text-align: center;
+      li {
+        display: inline-block;
+        height: auto !important;
+        width: auto;
+        color: #be0c3e;
+        font: 400 18px NexaBold;
+        text-transform: uppercase;
+        text-align: center;
+        padding: 3px 0;
+        a {
+          padding: 7px;
+          text-decoration: none;
+          color: #b4b4b4;
+          font: 400 14px NexaLight;
+        }
+        &.active {
+          a {
+            color: #be0c3e;
+            font: 400 14px NexaLight;
+          }
+        }
+      }
+    }
+  }
+  ul.allpr {
+    list-style: none;
+    clear: both;
+    li {
+      float: left;
+      width: 320px;
+    }
+  }
+  .slider-1,
+  .slider-2,
+  .product {
+    li {
+      height: 350px;
+      padding: 0 25px;
+      text-align: center;
+      &:hover {
+        border: 1px solid #656565;
+        .desc {
+          display: block;
+        }
+      }
+    }
+  }
+  .thumb {
+    text-align: center;
+    img {
+      display: inline;
+    }
+  }
+  .title {
+    padding: 0 15px 15px;
+    h2 {
+      color: #656565;
+
+      //text-transform: capitalize;
+      font: 400 18px Arial;
+    }
+  }
+  .desc {
+    color: #be0c3e;
+    font: 400 14px Arial;
+    display: none;
+  }
+  .price {
+    color: #656565;
+    font: 400 18px Arial;
+    margin: 15px;
+    span {
+      color: #292929;
+      font: 700 18px Arial;
+    }
+  }
+}
+h1 {
+  color: #be0c3e;
+  font: 400 18px NexaBold;
+  text-transform: uppercase;
+  margin: 20px 0 0;
+  padding: 20px 0 0;
+}
+.slider-2 {
+  margin-top: 100px;
+}
