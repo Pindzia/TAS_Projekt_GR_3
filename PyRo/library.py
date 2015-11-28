@@ -13,17 +13,21 @@ class Library(object):
     def test(self):
         return "Test przeszedl pomyslnie."
 
-    def get_book(self, id):
-        """ Przykladowa funkcja z zapytaniem do bazy. """
-        # book = mysql.get("SELECT tytul FROM Ksiazka WHERE idKsiazka=%s;") % (id)
-
+    def getBook_id(self, id):
+        """ Zwraca ksiazke z podanym id. """
+        try:
+            return mysql.get("SELECT idKsiazka, tytul, autor, cena, dict_img, kategoria FROM Ksiazka WHERE idKsiazka=%s;" % (id))
+        except:
+            return "Najprawdopodobniej podales zle ID ksiazki lub wystapil blad w library.py"
 
 
 def main():
     """ Glowna funkcja, uruchamiana przy inicjalizacji PyRo. """
 
+    global mysql
+
     # Polacz z baza danych
-    # mysql = database.Database('localhost', 'root', 'root', 'tas')
+    mysql = database.Database('localhost', 'root', 'root', 'tas')
 
     # Polacz z PyRo
     library = Library()
@@ -37,4 +41,5 @@ def main():
 # Uruchamia funkcje glowna.
 if __name__=="__main__":
     main()
+
 
