@@ -17,8 +17,10 @@ def home(request):
     
     ev = pyro.library.test() # tak odnosimy sie do metod zawartych w pliku PyRo/library.py. Wystarczy przypisywac je do zmiennych, rejestrowac w "context" i mozemy je wyswietlac na stronie.
     example_book = pyro.library.getBook_id('9')
+    book_list = pyro.library.getBook_list(20)
+    sorted_list = pyro.library.getBook_sort('cena', 'ASC', 20)
 
     template = "index.html"
-    context = {'ev':ev, 'example_book':example_book}
+    context = {'ev':ev, 'example_book':example_book, 'book_list':book_list, 'sorted_list':sorted_list}
 
     return render(request, template, context)

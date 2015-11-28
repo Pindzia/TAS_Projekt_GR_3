@@ -15,10 +15,21 @@ class Library(object):
 
     def getBook_id(self, id):
         """ Zwraca ksiazke z podanym id. """
+
         try:
-            return mysql.get("SELECT idKsiazka, tytul, autor, cena, dict_img, kategoria FROM Ksiazka WHERE idKsiazka=%s;" % (id))
+            return mysql.get("SELECT idKsiazka, tytul, autor, cena, dict_img, kategoria FROM Ksiazka WHERE idKsiazka=%s;" % (id), 1)
         except:
             return "Najprawdopodobniej podales zle ID ksiazki lub wystapil blad w library.py"
+
+    def getBook_list(self, rows):
+        "Zwraca listę wszystkich ksiazek."
+
+        return mysql.get("SELECT * FROM Ksiazka;", rows)
+
+    def getBook_sort(self, by_what, order, rows):
+        "Zwraca posortowana liste ksiazek."
+
+        return mysql.get("SELECT * FROM Ksiazka ORDER BY %s %s;" % (by_what, order), rows)
 
 
 def main():

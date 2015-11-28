@@ -21,12 +21,12 @@ class Database():
             print "Blad %d: %s" % (e.args[0], e.args[1])
             sys.exit(1)
 
-    def get(self, question):
-        """ Odpytuje baze danych. """
+    def get(self, question, rows):
+        """ Odpytuje baze danych. Drugim argumentem jest liczba wpisow, ktora chcemy uzyskac."""
 
         con.query(question)
         result = con.use_result()
-        return result.fetch_row()[0]
+        return result.fetch_row(rows)
 
     def add(self, question):
         """ Modyfikuje baze danych. """
