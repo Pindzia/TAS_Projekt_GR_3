@@ -1,0 +1,53 @@
+.middle {
+  padding: 50px 0;
+  li {
+    height: 350px;
+    padding: 0 25px;
+    text-align: center;
+    &:hover {
+      border: 1px solid #656565;
+      .desc {
+        display: block;
+      }
+    }
+  }
+  .thumb {
+    text-align: center;
+    img {
+      display: inline;
+    }
+  }
+  .title {
+    padding: 0 15px 15px;
+    h2 {
+      color: #656565;
+
+      //text-transform: capitalize;
+      font: 400 18px Arial;
+    }
+  }
+  .desc {
+    color: #be0c3e;
+    font: 400 14px Arial;
+    display: none;
+  }
+  .price {
+    color: #656565;
+    font: 400 18px Arial;
+    margin: 15px;
+    span {
+      color: #292929;
+      font: 700 18px Arial;
+    }
+  }
+}
+h1 {
+  color: #be0c3e;
+  font: 400 18px NexaBold;
+  text-transform: uppercase;
+  margin: 20px 0 0;
+  padding: 20px 0 0;
+}
+.slider-2 {
+  margin-top: 100px;
+}
