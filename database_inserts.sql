@@ -5,10 +5,10 @@ DELETE FROM `tas`.`Koszyk` ;
 DELETE FROM `tas`.`Ksiazka` ;
 
 INSERT INTO Ksiazka(autor, tytul, cena, dict_img, kategoria) VALUES
-            ("Dostojewski Fiodor", "Idiota", "38,99", "", "Rosyjska literatura"),
-            ("Erich Gamma", "Wzorce projektowe", "59,99", "", "Programowanie"),
-            ("W zasadzie niegroznia", "Douglas Adams", "29,99", "", "Fantastyka"),
-            ("Lod", "Dukaj Jacek", "79,99", "", "Fantastyka"),
-            ("Wola mocy", "Nietzsche Friedrich", "39,00", "", "Filozofia"),
-            ("Nienasycenie", "Witkiewicz Stanislaw", "29,99", "", "Powiesc"),
-            ("Jesli zimowa noca podrozny", "Calvino Italo", "29,99", "", "Powiesc");
+            ("Dostojewski Fiodor", "Idiota", "38.98", "images/covers/idiota.jpg", "Rosyjska literatura"),
+            ("Erich Gamma", "Wzorce projektowe", "59.99", "images/covers/wzorce.jpg", "Programowanie"),
+            ("Douglas Adams", "W zasadzie niegroznia", "29.99", "images/covers/niegrozna.jpg", "Fantastyka"),
+            ("Dukaj Jacek", "Lod", "79.99", "images/covers/lod.jpg", "Fantastyka"),
+            ("Nietzsche Friedrich", "Wola mocy", "39.00", "images/covers/nic.jpg", "Filozofia"),
+            ("Witkiewicz Stanislaw", "Nienasycenie", "29.99", "images/covers/nienasycenie.jpg", "Powiesc"),
+            ("Calvino Italo", "Jesli zimowa noca podrozny", "29.99", "images/covers/podrozny.jpg", "Powiesc");

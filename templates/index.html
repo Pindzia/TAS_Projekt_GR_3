@@ -1,17 +1,363 @@
-<!doctype html>
-<html>
+{% load staticfiles %}
+
+<!DOCTYPE html>
+<html lang="en">
 
 <head>
-    <meta charset="utf-8">
-    <title>Szczęśliwa Księgarnia</title>    
+  <meta charset="UTF-8">
+  <title>Document</title>
+
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+  <!-- bxSlider Javascript file -->
+  <script src="{% static 'js/jquery.bxslider.min.js' %}"></script>
+  <script src="{% static 'js/app.js' %}"></script>
+  <!-- bxSlider CSS file -->
+  <link href="{% static 'css/jquery.bxslider.css' %}" rel="stylesheet" />
+  <link rel="stylesheet" href="{% static 'css/main.css' %}">
 </head>
 
 <body>
+  <header>
+    <div class="wrapper">
+      <div class="logo">
+        <a href="index.html">
+          <img src="{% static 'images/logo.png' %}" alt="">
+        </a>
+      </div>
+    </div>
+    <nav>
+      <div class="wrapper">
+        <div class="grid">
+          <div class="col-9-12">
 
-    Test: {{ ev }} <br><br>
-    Ksiazka po ID: {{ example_book }} <br><br>
-    Lista ksiazek: {{ book_list }} <br><br>
-    Posortowana lista: {{ sorted_list }}
+            <ul>
+              <li><a href="">Link 1</a></li>
+              <li><a href="">Link 2</a></li>
+              <li><a href="">Link 3</a></li>
+            </ul>
+
+          </div>
+          <div class="col-3-12">
+            <span class="cart"><a href="">koszyk</a></span>
+          </div>
+        </div>
+      </div>
+    </nav>
+  </header>
+  <div class="wrapper">
+    <div class="grid">
+      <div class="col-3-12 balans push-right">
+        <div class="grid">
+          <div class="col-9-12 text-left">
+            <span>Obecnie</span>
+          </div>
+          <div class="col-3-12 text-right">0.00 zł</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <section class="middle">
+    <div class="wrapper">
+      <div class="grid">
+        <div class="col-1-1">
+
+          <div class="slider-1">
+            <h1>Nasze Produkty</h1>
+            <ul class="slider1">
+
+                {% for book in book_list %}
+                    <li>
+                        <div class="title">
+                            <h2> {{ book.2 }} </h2>
+                        </div>
+                        <div class="thumb">
+                            <img src="{% static 'images/book1.png' %}" />
+                        </div>
+                        <div class="price">
+                            Cena
+                            <span> {{ book.3 }} </span>
+                        </div>
+                        <div class="desc">
+                            <h4> {{ book.1 }} </h4>
+                            {{ book.5 }}
+                        </div>
+                {% endfor %}
+
+            </ul>
+          </div>
+
+          <div class="products" style="padding:50px 0">
+            <div class="grid">
+              <div class="col-5-12 push-right sort">
+                <ul>
+                  <li>Sortuj po:</li>
+                  <li style="padding:0 25px;"><a href="">Cena</a></li>
+                  <li style="padding:0 25px;" class="active"><a href="">Data wydania</a></li>
+                </ul>
+              </div>
+            </div>
+            <div class="product">
+              <ul class="allpr">
+                <li>
+                  <div class="title">
+                    <h2>Tytuł</h2>
+                  </div>
+                  <div class="thumb">
+                    <img src="{% static 'images/book1.png' %}" />
+                  </div>
+                  <div class="price">
+                    Cena
+                    <span>37 zł</span>
+                  </div>
+                  <div class="desc">
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Earum ut dolorum inventore sed consequuntur deserunt, esse ratione modi, rerum dicta debitis iste repellat. Sit, dolor dolore quidem laudantium! Dicta, dignissimos.
+                  </div>
+                </li>
+                <li>
+                  <div class="title">
+                    <h2>Tytuł</h2>
+                  </div>
+                  <div class="thumb">
+                    <img src="{% static 'images/book1.png' %}" />
+                  </div>
+                  <div class="price">
+                    Cena
+                    <span>37 zł</span>
+                  </div>
+                  <div class="desc">
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Earum ut dolorum inventore sed consequuntur deserunt, esse ratione modi, rerum dicta debitis iste repellat. Sit, dolor dolore quidem laudantium! Dicta, dignissimos.
+                  </div>
+                </li>
+                <li>
+                  <div class="title">
+                    <h2>Tytuł</h2>
+                  </div>
+                  <div class="thumb">
+                    <img src="{% static 'images/book1.png' %}" />
+                  </div>
+                  <div class="price">
+                    Cena
+                    <span>37 zł</span>
+                  </div>
+                  <div class="desc">
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Earum ut dolorum inventore sed consequuntur deserunt, esse ratione modi, rerum dicta debitis iste repellat. Sit, dolor dolore quidem laudantium! Dicta, dignissimos.
+                  </div>
+                </li>
+                <li>
+                  <div class="title">
+                    <h2>Tytuł</h2>
+                  </div>
+                  <div class="thumb">
+                    <img src="{% static 'images/book1.png' %}" />
+                  </div>
+                  <div class="price">
+                    Cena
+                    <span>37 zł</span>
+                  </div>
+                  <div class="desc">
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Earum ut dolorum inventore sed consequuntur deserunt, esse ratione modi, rerum dicta debitis iste repellat. Sit, dolor dolore quidem laudantium! Dicta, dignissimos.
+                  </div>
+                </li>
+                <li>
+                  <div class="title">
+                    <h2>Tytuł</h2>
+                  </div>
+                  <div class="thumb">
+                    <img src="{% static 'images/book1.png' %}" />
+                  </div>
+                  <div class="price">
+                    Cena
+                    <span>37 zł</span>
+                  </div>
+                  <div class="desc">
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Earum ut dolorum inventore sed consequuntur deserunt, esse ratione modi, rerum dicta debitis iste repellat. Sit, dolor dolore quidem laudantium! Dicta, dignissimos.
+                  </div>
+                </li>
+                <li>
+                  <div class="title">
+                    <h2>Tytuł</h2>
+                  </div>
+                  <div class="thumb">
+                    <img src="{% static 'images/book1.png' %}" />
+                  </div>
+                  <div class="price">
+                    Cena
+                    <span>37 zł</span>
+                  </div>
+                  <div class="desc">
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Earum ut dolorum inventore sed consequuntur deserunt, esse ratione modi, rerum dicta debitis iste repellat. Sit, dolor dolore quidem laudantium! Dicta, dignissimos.
+                  </div>
+                </li>
+                <li>
+                  <div class="title">
+                    <h2>Tytuł</h2>
+                  </div>
+                  <div class="thumb">
+                    <img src="{% static 'images/book1.png' %}" />
+                  </div>
+                  <div class="price">
+                    Cena
+                    <span>37 zł</span>
+                  </div>
+                  <div class="desc">
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Earum ut dolorum inventore sed consequuntur deserunt, esse ratione modi, rerum dicta debitis iste repellat. Sit, dolor dolore quidem laudantium! Dicta, dignissimos.
+                  </div>
+                </li>
+                <li>
+                  <div class="title">
+                    <h2>Tytuł</h2>
+                  </div>
+                  <div class="thumb">
+                    <img src="{% static 'images/book1.png' %}" />
+                  </div>
+                  <div class="price">
+                    Cena
+                    <span>37 zł</span>
+                  </div>
+                  <div class="desc">
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Earum ut dolorum inventore sed consequuntur deserunt, esse ratione modi, rerum dicta debitis iste repellat. Sit, dolor dolore quidem laudantium! Dicta, dignissimos.
+                  </div>
+                </li>
+                <li>
+                  <div class="title">
+                    <h2>Tytuł</h2>
+                  </div>
+                  <div class="thumb">
+                    <img src="{% static 'images/book1.png' %}" />
+                  </div>
+                  <div class="price">
+                    Cena
+                    <span>37 zł</span>
+                  </div>
+                  <div class="desc">
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Earum ut dolorum inventore sed consequuntur deserunt, esse ratione modi, rerum dicta debitis iste repellat. Sit, dolor dolore quidem laudantium! Dicta, dignissimos.
+                  </div>
+                </li>
+                <li>
+                  <div class="title">
+                    <h2>Tytuł</h2>
+                  </div>
+                  <div class="thumb">
+                    <img src="{% static 'images/book1.png' %}" />
+                  </div>
+                  <div class="price">
+                    Cena
+                    <span>37 zł</span>
+                  </div>
+                  <div class="desc">
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Earum ut dolorum inventore sed consequuntur deserunt, esse ratione modi, rerum dicta debitis iste repellat. Sit, dolor dolore quidem laudantium! Dicta, dignissimos.
+                  </div>
+                </li>
+                <li>
+                  <div class="title">
+                    <h2>Tytuł</h2>
+                  </div>
+                  <div class="thumb">
+                    <img src="{% static 'images/book1.png' %}" />
+                  </div>
+                  <div class="price">
+                    Cena
+                    <span>37 zł</span>
+                  </div>
+                  <div class="desc">
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Earum ut dolorum inventore sed consequuntur deserunt, esse ratione modi, rerum dicta debitis iste repellat. Sit, dolor dolore quidem laudantium! Dicta, dignissimos.
+                  </div>
+                </li>
+                <li>
+                  <div class="title">
+                    <h2>Tytuł</h2>
+                  </div>
+                  <div class="thumb">
+                    <img src="{% static 'images/book1.png' %}" />
+                  </div>
+                  <div class="price">
+                    Cena
+                    <span>37 zł</span>
+                  </div>
+                  <div class="desc">
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Earum ut dolorum inventore sed consequuntur deserunt, esse ratione modi, rerum dicta debitis iste repellat. Sit, dolor dolore quidem laudantium! Dicta, dignissimos.
+                  </div>
+                </li>
+                <li>
+                  <div class="title">
+                    <h2>Tytuł</h2>
+                  </div>
+                  <div class="thumb">
+                    <img src="{% static 'images/book1.png' %}" />
+                  </div>
+                  <div class="price">
+                    Cena
+                    <span>37 zł</span>
+                  </div>
+                  <div class="desc">
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Earum ut dolorum inventore sed consequuntur deserunt, esse ratione modi, rerum dicta debitis iste repellat. Sit, dolor dolore quidem laudantium! Dicta, dignissimos.
+                  </div>
+                </li>
+                <li>
+                  <div class="title">
+                    <h2>Tytuł</h2>
+                  </div>
+                  <div class="thumb">
+                    <img src="{% static 'images/book1.png' %}" />
+                  </div>
+                  <div class="price">
+                    Cena
+                    <span>37 zł</span>
+                  </div>
+                  <div class="desc">
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Earum ut dolorum inventore sed consequuntur deserunt, esse ratione modi, rerum dicta debitis iste repellat. Sit, dolor dolore quidem laudantium! Dicta, dignissimos.
+                  </div>
+                </li>
+                <li>
+                  <div class="title">
+                    <h2>Tytuł</h2>
+                  </div>
+                  <div class="thumb">
+                    <img src="{% static 'images/book1.png' %}" />
+                  </div>
+                  <div class="price">
+                    Cena
+                    <span>37 zł</span>
+                  </div>
+                  <div class="desc">
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Earum ut dolorum inventore sed consequuntur deserunt, esse ratione modi, rerum dicta debitis iste repellat. Sit, dolor dolore quidem laudantium! Dicta, dignissimos.
+                  </div>
+                </li>
+                <li>
+                  <div class="title">
+                    <h2>Tytuł</h2>
+                  </div>
+                  <div class="thumb">
+                    <img src="{% static 'images/book1.png' %}" />
+                  </div>
+                  <div class="price">
+                    Cena
+                    <span>37 zł</span>
+                  </div>
+                  <div class="desc">
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Earum ut dolorum inventore sed consequuntur deserunt, esse ratione modi, rerum dicta debitis iste repellat. Sit, dolor dolore quidem laudantium! Dicta, dignissimos.
+                  </div>
+                </li>
+
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <footer>
+    <div class="wrapper">
+      <div class="grid">
+        <div class="col-1-2 text-left">
+          <img src="{% static 'images/book-white.png' %}" alt="">
+          <span>GRUPATAS#2015 &copy;</span>
+        </div>
+        <div class="col-1-2 text-right">GRUPA</div>
+      </div>
+    </div>
+  </footer>
 
 </body>
+
 </html>
