@@ -26,6 +26,7 @@ class Library(object):
 
         return mysql.get("SELECT * FROM Ksiazka;", rows)
 
+
     def getBook_sort(self, by_what, order, rows):
         "Zwraca posortowana liste ksiazek."
 
