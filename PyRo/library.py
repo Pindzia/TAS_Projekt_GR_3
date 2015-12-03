@@ -45,8 +45,10 @@ def main():
     library = Library()
     Pyro4.Daemon.serveSimple(
             {
-                library: "example.library"
+                library: "tas.library"
             },
+            host = 'localhost',
+            port = 8090,
             ns = False)
 
 
