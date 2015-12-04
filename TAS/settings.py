@@ -26,6 +26,8 @@ TEMPLATE_DEBUG = True
 
 ALLOWED_HOSTS = []
 
+PYRO_URI = "PYRO:tas.library@localhost:8090"
+
 
 # Application definition
 
