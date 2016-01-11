@@ -18,3 +18,11 @@ def home(request, by_what='tytul'):
     context = {'book_list':book_list, 'sorted_list':sorted_list, 'sort':sort}
 
     return render(request, template, context)
+
+def test(request):
+    """ Strona testowa. """
+
+    template = "test.html"
+    context = {}
+
+    return render(request, template, context)
