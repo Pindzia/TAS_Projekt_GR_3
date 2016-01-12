@@ -27,7 +27,7 @@ def test(request):
     """ Strona testowa. """
    	
     if request.POST.get('register'):
-        pyro.library.registry(request.POST.get('login'),request.POST.get('password'),request.POST.get('password2'),request.POST.get('adres'),request.POST.get('nrtel'),20)
+        library.registry(request.POST.get('login'),request.POST.get('password'),request.POST.get('password2'),request.POST.get('adres'),request.POST.get('nrtel'))
 
     template = "test.html"
     context = {}
