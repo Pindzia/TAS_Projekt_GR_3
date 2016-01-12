@@ -8,21 +8,21 @@ SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='TRADITIONAL,ALLOW_INVALID_DATES';
 
 -- -----------------------------------------------------
--- Schema mydb
+-- Schema tas
 -- -----------------------------------------------------
 
 -- -----------------------------------------------------
--- Schema mydb
+-- Schema tas
 -- -----------------------------------------------------
-CREATE SCHEMA IF NOT EXISTS `mydb` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci ;
-USE `mydb` ;
+CREATE SCHEMA IF NOT EXISTS `tas` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci ;
+USE `tas` ;
 
 -- -----------------------------------------------------
--- Table `mydb`.`Ksiazka`
+-- Table `tas`.`Ksiazka`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `mydb`.`Ksiazka` ;
+DROP TABLE IF EXISTS `tas`.`Ksiazka` ;
 
-CREATE TABLE IF NOT EXISTS `mydb`.`Ksiazka` (
+CREATE TABLE IF NOT EXISTS `tas`.`Ksiazka` (
   `idKsiazka` INT NOT NULL AUTO_INCREMENT COMMENT '',
   `autor` VARCHAR(45) NOT NULL COMMENT '',
   `tytul` VARCHAR(45) NOT NULL COMMENT '',
@@ -35,11 +35,11 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `mydb`.`Uzytkownik`
+-- Table `tas`.`Uzytkownik`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `mydb`.`Uzytkownik` ;
+DROP TABLE IF EXISTS `tas`.`Uzytkownik` ;
 
-CREATE TABLE IF NOT EXISTS `mydb`.`Uzytkownik` (
+CREATE TABLE IF NOT EXISTS `tas`.`Uzytkownik` (
   `idUzytkownik` INT NOT NULL AUTO_INCREMENT COMMENT '',
   `login` VARCHAR(45) NOT NULL COMMENT '',
   `haslo` VARCHAR(256) NOT NULL COMMENT '',
@@ -53,11 +53,11 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `mydb`.`Koszyk`
+-- Table `tas`.`Koszyk`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `mydb`.`Koszyk` ;
+DROP TABLE IF EXISTS `tas`.`Koszyk` ;
 
-CREATE TABLE IF NOT EXISTS `mydb`.`Koszyk` (
+CREATE TABLE IF NOT EXISTS `tas`.`Koszyk` (
   `idKoszyk` INT NOT NULL AUTO_INCREMENT COMMENT '',
   `idUzytkownik` INT NOT NULL COMMENT '',
   `data_realizacji` DATETIME NULL COMMENT '',
@@ -69,18 +69,18 @@ CREATE TABLE IF NOT EXISTS `mydb`.`Koszyk` (
   UNIQUE INDEX `idKoszyk_UNIQUE` (`idKoszyk` ASC)  COMMENT '',
   CONSTRAINT `fk_Koszyk_Uzytkownik3`
     FOREIGN KEY (`idUzytkownik`)
-    REFERENCES `mydb`.`Uzytkownik` (`idUzytkownik`)
+    REFERENCES `tas`.`Uzytkownik` (`idUzytkownik`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `mydb`.`listaKoszyka`
+-- Table `tas`.`listaKoszyka`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `mydb`.`listaKoszyka` ;
+DROP TABLE IF EXISTS `tas`.`listaKoszyka` ;
 
-CREATE TABLE IF NOT EXISTS `mydb`.`listaKoszyka` (
+CREATE TABLE IF NOT EXISTS `tas`.`listaKoszyka` (
   `idKsiazka` INT NOT NULL COMMENT '',
   `idKoszyk` INT NOT NULL COMMENT '',
   `ilość` INT NOT NULL COMMENT '',
@@ -89,35 +89,35 @@ CREATE TABLE IF NOT EXISTS `mydb`.`listaKoszyka` (
   PRIMARY KEY (`idKsiazka`, `idKoszyk`)  COMMENT '',
   CONSTRAINT `idKsiazek`
     FOREIGN KEY (`idKsiazka`)
-    REFERENCES `mydb`.`Ksiazka` (`idKsiazka`)
+    REFERENCES `tas`.`Ksiazka` (`idKsiazka`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `idKoszyka`
     FOREIGN KEY (`idKoszyk`)
-    REFERENCES `mydb`.`Koszyk` (`idKoszyk`)
+    REFERENCES `tas`.`Koszyk` (`idKoszyk`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `mydb`.`Tag`
+-- Table `tas`.`Tag`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `mydb`.`Tag` ;
+DROP TABLE IF EXISTS `tas`.`Tagi` ;
 
-CREATE TABLE IF NOT EXISTS `mydb`.`Tag` (
-  `id_Tag` INT NOT NULL COMMENT '',
+CREATE TABLE IF NOT EXISTS `tas`.`Tagi` (
+  `id_Tag` INT NOT NULL AUTO_INCREMENT COMMENT '',
   `nazwaTagu` VARCHAR(45) NOT NULL COMMENT '',
   PRIMARY KEY (`id_Tag`)  COMMENT '')
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `mydb`.`listaTagu`
+-- Table `tas`.`listaTagu`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `mydb`.`listaTagu` ;
+DROP TABLE IF EXISTS `tas`.`listaTagu` ;
 
-CREATE TABLE IF NOT EXISTS `mydb`.`listaTagu` (
+CREATE TABLE IF NOT EXISTS `tas`.`listaTagu` (
   `id_Tag` INT NOT NULL COMMENT '',
   `idKsiazka` INT NOT NULL COMMENT '',
   INDEX `fk_listaTagu_Tag1_idx` (`id_Tag` ASC)  COMMENT '',
@@ -125,12 +125,12 @@ CREATE TABLE IF NOT EXISTS `mydb`.`listaTagu` (
   INDEX `fk_listaTagu_Ksiazka1_idx` (`idKsiazka` ASC)  COMMENT '',
   CONSTRAINT `fk_listaTagu_Tag1`
     FOREIGN KEY (`id_Tag`)
-    REFERENCES `mydb`.`Tag` (`id_Tag`)
+    REFERENCES `tas`.`Tag` (`id_Tag`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_listaTagu_Ksiazka1`
     FOREIGN KEY (`idKsiazka`)
-    REFERENCES `mydb`.`Ksiazka` (`idKsiazka`)
+    REFERENCES `tas`.`Ksiazka` (`idKsiazka`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
