@@ -13,14 +13,14 @@ INSERT INTO Ksiazka(autor, tytul, cena, dict_img, kategoria) VALUES
             ("Witkiewicz Stanislaw", "Nienasycenie", "29.99", "images/covers/nienasycenie.jpg", "Powiesc"),
             ("Calvino Italo", "Jesli zimowa noca podrozny", "29.99", "images/covers/podrozny.jpg", "Powiesc");
 
-INSERT INTO Tagi(id_Tag,nazwaTagu) VALUES
+INSERT INTO Tagi(idTag,nazwaTagu) VALUES
             (1, "heheszki"),
             (2, "biografia"),
             (3, "naukowe"),
             (4, "bestseller"),
             (5, "zimne");
 SET FOREIGN_KEY_CHECKS=0;
-INSERT INTO listaTagu(idKsiazka,id_Tag) VALUES
+INSERT INTO listaTagu(idKsiazka,idTag) VALUES
             (1, 1),
             (1, 2),
             (1, 4),

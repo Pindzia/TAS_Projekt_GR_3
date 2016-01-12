@@ -106,7 +106,7 @@ ENGINE = InnoDB;
 DROP TABLE IF EXISTS `tas`.`Tagi` ;
 
 CREATE TABLE IF NOT EXISTS `tas`.`Tagi` (
-  `id_Tag` INT NOT NULL AUTO_INCREMENT COMMENT '',
+  `idTag` INT NOT NULL AUTO_INCREMENT COMMENT '',
   `nazwaTagu` VARCHAR(45) NOT NULL COMMENT '',
   PRIMARY KEY (`id_Tag`)  COMMENT '')
 ENGINE = InnoDB;
@@ -118,7 +118,7 @@ ENGINE = InnoDB;
 DROP TABLE IF EXISTS `tas`.`listaTagu` ;
 
 CREATE TABLE IF NOT EXISTS `tas`.`listaTagu` (
-  `id_Tag` INT NOT NULL COMMENT '',
+  `idTag` INT NOT NULL COMMENT '',
   `idKsiazka` INT NOT NULL COMMENT '',
   INDEX `fk_listaTagu_Tag1_idx` (`id_Tag` ASC)  COMMENT '',
   PRIMARY KEY (`id_Tag`, `idKsiazka`)  COMMENT '',
