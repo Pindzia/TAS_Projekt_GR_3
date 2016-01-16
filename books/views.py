@@ -49,3 +49,14 @@ def search(request, query):
 
     return render(request, template, context)
 
+def cart(request):
+    pass
+
+def add(request, book_id, ilosc):
+    """ Dodawanie ksiazki."""
+
+    print "sasasdsa"
+
+    pyro.library.addBook(book_id, ilosc)
+
+    return redirect("/")
