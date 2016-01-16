@@ -12,3 +12,21 @@ INSERT INTO Ksiazka(autor, tytul, cena, dict_img, kategoria) VALUES
             ("Nietzsche Friedrich", "Wola mocy", "39.00", "images/covers/nic.jpg", "Filozofia"),
             ("Witkiewicz Stanislaw", "Nienasycenie", "29.99", "images/covers/nienasycenie.jpg", "Powiesc"),
             ("Calvino Italo", "Jesli zimowa noca podrozny", "29.99", "images/covers/podrozny.jpg", "Powiesc");
+
+INSERT INTO Tag(id_Tag,nazwaTagu) VALUES
+            (1, "heheszki"),
+            (2, "biografia"),
+            (3, "naukowe"),
+            (4, "bestseller"),
+            (5, "zimne");
+
+INSERT INTO listaTagu(idKsiazka,id_Tag) VALUES
+            (1, 1),
+            (1, 2),
+            (1, 4),
+            (2, 3),
+            (3, 4),
+            (4, 5),
+            (6, 4),
+            (7, 5);
+            
