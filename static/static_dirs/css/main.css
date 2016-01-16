@@ -422,3 +422,129 @@ h1 {
   margin-top: 100px; }
 
 /*# sourceMappingURL=main.css.map */
+
+
+/* koszyk */
+
+.koszyk
+{
+  position: relative;
+
+}
+.koszyk ul
+{
+  list-style-type: none;
+  margin: 0;
+}
+.koszyk ul li
+{
+  position: relative;
+  margin:0;
+}
+.rzad
+{
+  margin: 20px;
+
+  height: 200px;
+  box-shadow: 1px 1px 1px #000000;
+
+}
+.rzad img
+{
+  float: left;
+  position: relative;
+  left: 20px;
+  top: 60px;
+  margin: 0 auto;
+}
+.rzad p.tytul
+{
+  position: relative;
+  top:0;
+  left: 50px;
+
+  line-height: 200px;
+  font-size: 32px;
+
+  width: 500px;
+
+  /*background: #EEF;*/
+}
+.rzad p.cena
+{
+  position: absolute;
+  top: -27px;
+  left: 570px;
+  line-height: 200px;
+
+  width: 100px; 
+
+  font-size: 28px;
+
+}
+.rzad .ileBox
+{
+  position: absolute;
+  top: 0;
+  left: 670px;
+
+  height: 200px;
+  background: #CCC;
+
+}
+img.cross
+{
+  position: absolute;
+  top: 77px;
+  left: 850px;
+
+  height: 50px;
+  width: 50px;
+
+  cursor: pointer;
+}
+.rzad .prev, .rzad .next
+{
+  cursor:pointer;
+  position:absolute;
+  top:50px;
+  margin: 20px;
+  height: 17px;
+  overflow:hidden;
+  width:18px;
+  margin-top:40px;
+  background:#fff;
+  -moz-border-radius:3px;
+  -webkit-border-radius:3px;
+  border-radius:3px;
+  -moz-box-shadow:0 1px 2px #000;
+  -webkit-box-shadow:0 1px 2px #000;
+  box-shadow:0 1px 2px #000;
+  transform:scale(2,3);
+  color: #d9542b;
+  text-weight: bold;
+}
+.rzad .prev
+{
+  left:0;
+  background:#fff;
+  text-align: center;
+}
+.rzad .next
+{
+  left: 100px;
+  background:#fff;
+  text-align: center;
+}
+.rzad input
+{
+  position: absolute;
+  top: 75px;
+  left: 55px;
+
+  width: 50px;
+  height: 50px;
+
+  font-size: 30px;
+  text-align: center;
+}
