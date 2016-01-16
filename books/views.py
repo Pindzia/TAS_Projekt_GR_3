@@ -50,13 +50,24 @@ def search(request, query):
     return render(request, template, context)
 
 def cart(request):
-    pass
+    
+    cart_list = pyro.library.getCart_list(20)
+
+    template = "cart.html"
+    context = {'cart_list':cart_list }
+
+    return render(request, template, context)
 
 def add(request, book_id, ilosc):
     """ Dodawanie ksiazki."""
 
-    print "sasasdsa"
-
     pyro.library.addBook(book_id, ilosc)
+
+    return redirect("/")
+
+def delete(request, book_id):
+    """ Usuwanie ksiazki."""
+
+    print pyro.library.deleteBook(book_id)
 
     return redirect("/")

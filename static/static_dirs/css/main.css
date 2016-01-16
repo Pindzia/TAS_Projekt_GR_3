@@ -548,3 +548,12 @@ img.cross
   font-size: 30px;
   text-align: center;
 }
+.rzad .btn
+{
+  position: absolute;
+  top: 77px;
+  left: 850px;
+
+  height: 50px;
+  width: 50px;
+}

@@ -46,9 +46,23 @@ class Library(object):
             
     def addBook(self,book_id,ilosc,koszyk_id="1"):
         try:
-            return mysql.add("INSERT INTO listaKoszyka (idKsiazek, idKoszyka, ilość) VALUES (%s %s %s);" % (book_id, koszyk_id, ilosc))
+            return mysql.add("INSERT INTO listaKoszyka (idKsiazek, idKoszyk, ilość) VALUES (%s %s %s);" % (book_id, koszyk_id, ilosc))
         except:
-            return "Najprawdopodobniej podales zle ID ksiazki lub wystapil blad w library.py"
+            return "addBook: Najprawdopodobniej podales zle ID ksiazki lub wystapil blad w library.py"
+    
+    def getCart_list(self, rows):
+        """Zwraca listę wszystkich ksiazek w koszyku."""
+        try:
+            return mysql.get("SELECT * FROM Ksiazka where idKsiazka IN (select idKsiazka from listaKoszyka where idKoszyk = (select idKoszyk from Koszyk where idUzytkownik = 1));", rows)
+        except:
+            return "getCar: Najprawdopodobniej podales zle ID ksiazki lub wystapil blad w library.py"
+
+    def deleteBook(self, book_id):
+        """Usuwa ksiazke z koszyka."""
+        try:
+            return mysql.get("DELETE FROM listaKoszyka WHERE idKoszyk=(SELECT idKoszyk FROM Koszyk WHERE idUzytkownik=1) AND idKsiazka=%s;" % (book_id))
+        except:
+            return "deleteBook: Najprawdopodobniej podales zle ID ksiazki lub wystapil blad w library.py"
         
 
     def registry(self , login, password, password_2, adres, nr_Telefonu, rows):

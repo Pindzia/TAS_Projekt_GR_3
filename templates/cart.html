@@ -64,18 +64,32 @@
           <div class="koszyk">
 
             <ul>
+
+              {% for book in cart_list %}
               <li class="rzad">
-                <img alt="" src="{% static 'images/book1.png' %}">
-                <p class="tytul">Pierwszy produkt koszyka</p>
-                <p class="cena">120 zł</p>
+                <img alt="" src="{% static book.4 %}" height="130" width="90">
+                <p class="tytul">{{ book.2 }}</p>
+                <p class="cena">{{ book.3 }} zł</p>
                 <div class="ileBox">
                   <span class="prev">&lt;</span>
                   <input type="text" name="ilosc" placeholder="1">
                   <span class="next">&gt;</span>
                 </div>
-                <img class="cross" alt="usuń" src="{% static 'images/cross.png' %}">  
+
+                <form method="post" action="cart/delete/{{ book.0 }}/">
+ 
+                  {% csrf_token %}
+                         
+                  <button type="submit" >
+                    <img class="cross" alt="usun" src="{% static 'images/cross.png' %}">
+                  </button>
+                
+                          
+                </form>
+
 
               </li>
+              {% endfor %}
             </ul>
 
           </div>
