@@ -28,7 +28,6 @@ class Database():
         result = con.use_result()
         return result.fetch_row(rows)
 
-
     def add(self, question):
         """ Modyfikuje baze danych. """
         con.query(question)

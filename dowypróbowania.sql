@@ -1,0 +1,34 @@
+/*do wypróbowania */
+
+
+create trigger koszyk_create after insert on Uzytkownik
+for each row
+BEGIN
+INSERT INTO Koszyk (idUzytkownik, data_realizacji, zmienna_ses_kosz) VALUES (new.idUzytkownik, current_timestamp, 0 );
+END;
+
+
+
+create procedure ins_uzyt( login_p varchar, haslo_p varchar, adres_p varchar, nr_telefonu_p int, email_p varchar)
+begin
+INSERT INTO Uzytkownik (login, haslo, adres, nr_telefonu, email) VALUES (login_p, haslo_p, adres_p, nr_telefonu_p, email_p);
+end;
+
+
+
+create procedure dodaj_ksiazke( idUzytkownik_p int, idKsiazki_p int, ilosc_p int)
+begin
+IF (select count(idKsiazek) from listaKoszyka where idKoszyk = (select idKoszyk from Koszyk where idUzytkownik=idUzytkownik_p)) = 1 
+THEN
+UPDATE listaKoszyka set ilosc = ilosc_p where idKoszyk = (select idKoszyk from Koszyk where idUzytkownik=idUzytkownik_p) and idKsiazka = idKsiazki_p;
+ELSE
+INSERT INTO listaKoszyka (idKsiazek, idKoszyk, ilość) VALUES (idKsiazki_p, (select idKoszyk from Koszyk where idUzytkownik=idUzytkownik_p), ilosc_p);
+end IF;
+end;
+
+
+
+create procedure usun_ksiazke( idUzytkownik_p int, idKsiazki_p int)
+begin
+delete from listaKoszyka where idKoszyk=(select idKoszyk from Koszyk where idUzytkownik=idUzytkownik_p) and idKsiazka=idKsiazki_p;
+end;

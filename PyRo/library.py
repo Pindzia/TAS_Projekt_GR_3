@@ -60,7 +60,7 @@ class Library(object):
     def deleteBook(self, book_id):
         """Usuwa ksiazke z koszyka."""
         try:
-            return mysql.get("DELETE FROM listaKoszyka WHERE idKoszyk=(SELECT idKoszyk FROM Koszyk WHERE idUzytkownik=1) AND idKsiazka=%s;" % (book_id))
+            return mysql.add("DELETE FROM listaKoszyka WHERE idKoszyk=(SELECT idKoszyk FROM Koszyk WHERE idUzytkownik=1) AND idKsiazka=%s;" % (book_id))
         except:
             return "deleteBook: Najprawdopodobniej podales zle ID ksiazki lub wystapil blad w library.py"
         
@@ -98,6 +98,10 @@ class Library(object):
         return "Gratulujemy Pomyślnej Rejestracji"
 
     def search(self, query):
+        """ Zwraca wynik wyszukiwania w bazie ksiazek. """
+
+        # DODAC SORTOWANIE!!!!!
+        
         p = re.compile(ur'([\w]+)')
         arguments = re.findall(p,query)
         

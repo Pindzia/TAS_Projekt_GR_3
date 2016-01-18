@@ -2,16 +2,12 @@ from django.shortcuts import render
 from __init__ import pyro
 from django.shortcuts import redirect
 
-# login, password, password_2, adres, nr_Telefonu, e_Mail, rows)
-def get_test():
-    print library.test()
-
 
 def home(request, by_what='tytul'):
     """ Strona glowna. Parametr 'by_what' mowi nam po czym sortujemy liste. """
 
     if request.POST.get('search'):
-        return redirect('/search/' + request.POST.get('query'))
+        return redirect('/search/' + request.POST.get('query') + '/tytul/')
 
     sort = by_what
     
@@ -34,11 +30,11 @@ def test(request):
 
     return render(request, template, context)
 
-def search(request, query):
+def search(request, query, by_what):
     """Strona wyszukiwania"""
 
     if request.POST.get('search'):
-        return redirect('/search/' + request.POST.get('query'))
+        return redirect('/search/' + request.POST.get('query') + '/tytul/')
 
     book_list = pyro.library.getBook_list(20)
     sorted_list = pyro.library.search(query)
@@ -70,4 +66,4 @@ def delete(request, book_id):
 
     print pyro.library.deleteBook(book_id)
 
-    return redirect("/")
+    return redirect("/cart/")
