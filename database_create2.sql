@@ -83,7 +83,7 @@ DROP TABLE IF EXISTS `tas`.`listaKoszyka` ;
 CREATE TABLE IF NOT EXISTS `tas`.`listaKoszyka` (
   `idKsiazka` INT NOT NULL COMMENT '',
   `idKoszyk` INT NOT NULL COMMENT '',
-  `ilość` INT NOT NULL COMMENT '',
+  `ilosc` INT NOT NULL COMMENT '',
   INDEX `idKsiazek_idx` (`idKsiazka` ASC)  COMMENT '',
   INDEX `idKoszyka_idx` (`idKoszyk` ASC)  COMMENT '',
   PRIMARY KEY (`idKsiazka`, `idKoszyk`)  COMMENT '',

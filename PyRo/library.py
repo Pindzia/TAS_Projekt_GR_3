@@ -44,9 +44,9 @@ class Library(object):
         #else:
             #return "Błędnie podane ID lub Próba SQL Injection"
             
-    def addBook(self,book_id,ilosc,koszyk_id="1"):
+    def addBook(self,book_id,ilosc,koszyk_id=1):
         try:
-            return mysql.add("INSERT INTO listaKoszyka (idKsiazek, idKoszyk, ilość) VALUES (%s %s %s);" % (book_id, koszyk_id, ilosc))
+            return mysql.add("INSERT INTO listaKoszyka (idKsiazka, idKoszyk, ilosc) VALUES (%s, %s, %s);" % (book_id, koszyk_id, ilosc))
         except:
             return "addBook: Najprawdopodobniej podales zle ID ksiazki lub wystapil blad w library.py"
     
