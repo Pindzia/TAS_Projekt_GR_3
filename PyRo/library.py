@@ -36,13 +36,13 @@ class Library(object):
     def getBook_sort(self, by_what, order, rows):
         """Zwraca posortowana liste ksiazek."""
         """ mysql.check przepuszcza zmienna przez regex'a który sprawdza czy order lub to jak sortujemy przy przekazywaniu zmiennych nie ma w sobie znaków specjalnych  """
-        if mysql.check(order) and mysql.check(by_what):
-            try:
-                return mysql.get("SELECT * FROM Ksiazka ORDER BY %s %s;" % (by_what, order), rows)
-            except:
-                return "Najprawdopodobniej podales zle ID ksiazki lub wystapil blad w library.py"
-        else:
-            return "Błędnie podane ID lub Próba SQL Injection"
+        #if mysql.check(order) and mysql.check(by_what):
+        try:
+            return mysql.get("SELECT * FROM Ksiazka ORDER BY %s %s;" % (by_what, order), rows)
+        except:
+            return "Najprawdopodobniej podales zle ID ksiazki lub wystapil blad w library.py"
+        #else:
+            #return "Błędnie podane ID lub Próba SQL Injection"
             
     def addBook(self,book_id,ilosc,koszyk_id="1"):
         try:
