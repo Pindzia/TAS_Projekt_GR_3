@@ -2,8 +2,8 @@
 
 import Pyro4
 import database
-import crypto
 import re
+from Crypto.Hash import SHA256
 
 
 class Library(object):
@@ -75,37 +75,31 @@ class Library(object):
             return "deleteBook: Najprawdopodobniej podales zle ID ksiazki lub wystapil blad w library.py"
         
 
-    def registry(self , login, password, password_2, adres, nr_Telefonu, rows):
-        list = [login, password, password_2, adres, nr_Telefonu]
-        list_num = ['Login', 'Hasło', 'Hasło ponowne', 'Adres', 'Numer Telefonu']
-        """sprawdzanie czy pola są puste """
+    def registry(self, login, password, password_2, adres, nr_Telefonu, e_Mail, rows):
+        list = [login, password, password_2, adres, nr_Telefonu, e_Mail]
+        list_num = ['Login', 'Haslo', 'Haslo ponowne', 'Adres', 'Numer Telefonu', 'E-mail']
         for e, nazwa in zip(list, list_num):
             if e is None:
                 return "Pole %s jest puste" % nazwa
-                
-        """sprawdzenie czy hasło nr 1 zgadza sie z nr 2"""
-        if password != password_2:
-            return "Hasło pierwsze różni się od hasła drugiego"
-            
-        """sprawdzanie danych wprowadzanych w celu określenia ich poprawności"""
+        
+        if list[1] != list[2]:
+            return "Hasla sie roznia"
         for l, nazwa in zip(list, list_num):
-            if not mysql.check(l):
-                return "Podane pole %s jest niepoprawnie wprowadzone" % nazwa
-        
-        """sprawdzamy czy sa uzytkownicy o tym loginie"""
-        if (mysql.get("SELECT Count(login) FROM Uzytkownik WHERE login = "+list[0]+" ;", rows)) == 1:
-            return "Użytkownik o podanym Loginie już istnieje"
-        
-        """przy wprowadzaniu danych nie popełniliśmy błędu zatem rejestrujemy"""
-        
-        """zahashowanie hasła"""
-        cryptedpwd = SHA512.new()
+            if not check(l):
+                return "Podane pole %s jest nieautoryzowane przez serwer" % nazwa
+
+
+        if (mysql.get("SELECT Count(login) FROM Uzytkownik WHERE login = %s ;", rows) % list[0]) == 1:
+            return "Uzytkownik o podanym Loginie jest juz zajety"
+    
+        cryptedpwd = SHA256.new()
         cryptedpwd.update(list[1])
-        
-        """REJESTRACJA czyli dodanie rekordu"""
-        mysql.add("INSERT INTO Uzytkownik (login, haslo, adres, nr_telefonu) VALUES (\'"+list[0]+"\', \'"+cryptedpwd+"\', \'"+list[3]+"\', \'"+str(list[4])+"\')")
-        
-        return "Gratulujemy Pomyślnej Rejestracji"
+
+        mystring = 'INSERT INTO Uzytkownik (login, haslo, adres, nr_telefonu, email) VALUES (\'' + list[0] + '\', \'' + cryptedpwd.hexdigest() + '\', \'' + \
+               list[3] + '\', ' + str(list[4]) + '\', \'' + str(list[5]) + '\')'
+        mysql.add(mystring)
+        Sukces = True
+        return Sukces
 
     def search(self, query, page):
         """ Zwraca wynik wyszukiwania w bazie ksiazek. """

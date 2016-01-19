@@ -33,10 +33,8 @@ class Database():
         con.query(question)
         
     def check(self, arg):
-        """Sprawdza poprawność argumentu podawanego do selecta lub addycji do bazy"""
-        arg = str(arg)
-        p = re.compile(ur'^[\w@ ]{6,100}$')
-        test_re = arg
+        p = re.compile(ur'^[\w@. ]{6,100}$')
+        test_re = str(arg)
         
         if re.search(p, test_re) is not None:
             return True

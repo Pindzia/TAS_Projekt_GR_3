@@ -61,10 +61,8 @@ CREATE TABLE IF NOT EXISTS `tas`.`Koszyk` (
   `idKoszyk` INT NOT NULL AUTO_INCREMENT COMMENT '',
   `idUzytkownik` INT NOT NULL COMMENT '',
   `data_realizacji` DATETIME NULL COMMENT '',
-  `zmienna_ses_kosz` INT NOT NULL COMMENT '',
   `status_zamowienia` SMALLINT(6) NOT NULL DEFAULT 0 COMMENT '',
   PRIMARY KEY (`idKoszyk`)  COMMENT '',
-  UNIQUE INDEX `zmienna_ses_UNIQUE` (`zmienna_ses_kosz` ASC)  COMMENT '',
   INDEX `fk_Koszyk_Uzytkownik3_idx` (`idUzytkownik` ASC)  COMMENT '',
   UNIQUE INDEX `idKoszyk_UNIQUE` (`idKoszyk` ASC)  COMMENT '',
   CONSTRAINT `fk_Koszyk_Uzytkownik3`

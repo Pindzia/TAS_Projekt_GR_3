@@ -28,18 +28,15 @@ class Database():
         result = con.use_result()
         return result.fetch_row(rows)
 
-
     def add(self, question):
         """ Modyfikuje baze danych. """
         con.query(question)
         
     def check(self, arg):
-        """Sprawdza poprawność argumentu podawanego do selecta lub addycji do bazy"""
-        str(arg)
-        p = re.compile(ur'^[\w@ ]{6,100}$')
-        test_re = arg
-        
-        if re.search(p, test_re) is not None:
-            return True
-        else:
-            return False
+    p = re.compile(ur'^[\w@. ]{6,100}$')
+    test_re = str(arg)
+
+    if re.search(p, test_re) is not None:
+        return True
+    else:
+        return False

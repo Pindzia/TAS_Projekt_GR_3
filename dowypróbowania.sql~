@@ -3,8 +3,9 @@
 
 create trigger koszyk_create after insert on Uzytkownik
 for each row 
-INSERT INTO Koszyk (idUzytkownik, data_realizacji) VALUES (NEW.idUzytkownik, current_timestamp);
-
+BEGIN
+	INSERT INTO Koszyk (idUzytkownik, data_realizacji) VALUES (NEW.idUzytkownik, current_timestamp);
+END
 
 
 
