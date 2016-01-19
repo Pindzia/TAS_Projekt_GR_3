@@ -36,14 +36,35 @@ class Library(object):
     def getBook_sort(self, by_what, order, rows):
         """Zwraca posortowana liste ksiazek."""
         """ mysql.check przepuszcza zmienna przez regex'a który sprawdza czy order lub to jak sortujemy przy przekazywaniu zmiennych nie ma w sobie znaków specjalnych  """
-        if mysql.check(order) and mysql.check(by_what):
-            try:
-                return mysql.get("SELECT * FROM Ksiazka ORDER BY %s %s;" % (by_what, order), rows)
-            except:
-                return "Najprawdopodobniej podales zle ID ksiazki lub wystapil blad w library.py"
-        else:
-            return "Błędnie podane ID lub Próba SQL Injection"
+        #if mysql.check(order) and mysql.check(by_what):
+        try:
+            return mysql.get("SELECT * FROM Ksiazka ORDER BY %s %s;" % (by_what, order), rows)
+        except:
+            return "Najprawdopodobniej podales zle ID ksiazki lub wystapil blad w library.py"
+        #else:
+            #return "Błędnie podane ID lub Próba SQL Injection"
             
+    def addBook(self,book_id,ilosc,koszyk_id=1):
+        try:
+            return mysql.add("INSERT INTO listaKoszyka (idKsiazka, idKoszyk, ilosc) VALUES (%s, %s, %s);" % (book_id, koszyk_id, ilosc))
+        except:
+            return "addBook: Najprawdopodobniej podales zle ID ksiazki lub wystapil blad w library.py"
+    
+    def getCart_list(self, rows):
+        """Zwraca listę wszystkich ksiazek w koszyku."""
+        try:
+            return mysql.get("SELECT * FROM Ksiazka where idKsiazka IN (select idKsiazka from listaKoszyka where idKoszyk = (select idKoszyk from Koszyk where idUzytkownik = 1));", rows)
+        except:
+            return "getCar: Najprawdopodobniej podales zle ID ksiazki lub wystapil blad w library.py"
+
+    def deleteBook(self, book_id):
+        """Usuwa ksiazke z koszyka."""
+        try:
+            return mysql.add("DELETE FROM listaKoszyka WHERE idKoszyk=(SELECT idKoszyk FROM Koszyk WHERE idUzytkownik=1) AND idKsiazka=%s;" % (book_id))
+        except:
+            return "deleteBook: Najprawdopodobniej podales zle ID ksiazki lub wystapil blad w library.py"
+        
+
     def registry(self , login, password, password_2, adres, nr_Telefonu, rows):
         list = [login, password, password_2, adres, nr_Telefonu]
         list_num = ['Login', 'Hasło', 'Hasło ponowne', 'Adres', 'Numer Telefonu']
@@ -77,17 +98,43 @@ class Library(object):
         return "Gratulujemy Pomyślnej Rejestracji"
 
     def search(self, query):
-        p = re.compile(ur'([\w]+)')
+        """ Zwraca wynik wyszukiwania w bazie ksiazek. """
+
+        # DODAC SORTOWANIE!!!!!
+        
+        p = re.compile(ur'( [\w]+|^[\w]+)')
         arguments = re.findall(p,query)
+        q = re.compile(ur'(#[\w]+)')
+        arguments2 = re.findall(q,query)
         
         a  = ''
         z = False
         for x in arguments: #.group(0)
+            x = x[1:]
             if z:
                 a += ' OR '
             z = True
-            a += "'" + x + "'" + 'IN (autor, tytul, kategoria)'
+            a += 'autor like ' + '"%' + x + '%"' ' OR '
+            a += 'tytul like ' + '"%' + x + '%"' ' OR '
+            a += 'kategoria like ' + '"%' + x + '%" '
+        if z and arguments2:
+            a += 'AND '
+        if arguments2:
+            a += 'EXISTS (SELECT * FROM listaTagu LEFT JOIN Tagi ON listaTagu.idTag = Tagi.idTag WHERE Ksiazka.idKsiazka = listaTagu.idKsiazka AND '
+
+        z = False;
+        for x in arguments2:
+            x = x[1:]
+            if z:
+                a += ' OR '
+            z = True
+            a += 'Tagi.nazwaTagu LIKE "%' + x + '%" '
+
+        if z:
+            a += ')'    
         a+= ";"
+        print 'a = '
+        print a
         return mysql.get("SELECT * FROM Ksiazka WHERE %s;" % (a), 20)
             
 def main():
