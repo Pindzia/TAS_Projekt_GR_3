@@ -429,6 +429,7 @@ h1 {
 .koszyk
 {
   position: relative;
+  margin: 0;
 
 }
 .koszyk ul
@@ -439,32 +440,32 @@ h1 {
 .koszyk ul li
 {
   position: relative;
-  margin:0;
+  margin:20px;
 }
 .rzad
 {
   margin: 20px;
 
   height: 200px;
-  box-shadow: 1px 1px 1px #000000;
+  box-shadow: 1px 1px 3px #000000;
 
 }
 .rzad img
 {
   float: left;
-  position: relative;
+  position: absolute;
   left: 20px;
-  top: 60px;
-  margin: 0 auto;
+  top: 35px;
+  margin: 0;
 }
 .rzad p.tytul
 {
-  position: relative;
-  top:0;
-  left: 50px;
+  position: absolute;
+  top:63px;
+  left: 150px;
 
-  line-height: 200px;
-  font-size: 32px;
+  line-height: 30px;
+  font-size: 26px;
 
   width: 500px;
 
@@ -473,13 +474,14 @@ h1 {
 .rzad p.cena
 {
   position: absolute;
-  top: -27px;
-  left: 570px;
-  line-height: 200px;
+  top: 63px;
+  left: 500px;
+  line-height: 30px;
 
-  width: 100px; 
+  width: 150px; 
 
-  font-size: 28px;
+  font-size: 26px;
+  text-align: right;
 
 }
 .rzad .ileBox
@@ -495,8 +497,8 @@ h1 {
 img.cross
 {
   position: absolute;
-  top: 77px;
-  left: 850px;
+  top: 0px;
+  left: 0px;
 
   height: 50px;
   width: 50px;
@@ -509,7 +511,7 @@ img.cross
   position:absolute;
   top:50px;
   margin: 20px;
-  height: 17px;
+  height: 15px;
   overflow:hidden;
   width:18px;
   margin-top:40px;
@@ -522,7 +524,9 @@ img.cross
   box-shadow:0 1px 2px #000;
   transform:scale(2,3);
   color: #d9542b;
-  text-weight: bold;
+  /*font-weight: bold;*/
+  line-height: 15px;
+
 }
 .rzad .prev
 {
@@ -556,4 +560,8 @@ img.cross
 
   height: 50px;
   width: 50px;
+  background: #FFF;
+  border: 0;
+
+  cursor: pointer;
 }
