@@ -102,14 +102,15 @@ class Library(object):
 
         # DODAC SORTOWANIE!!!!!
         
-        p = re.compile(ur'([\w]+)')
+        p = re.compile(ur'( [\w]+|^[\w]+)')
         arguments = re.findall(p,query)
-        q = re.compile(ur'(#[\w]+)')
+        q = re.compile(ur'(-[\w]+)')
         arguments2 = re.findall(q,query)
         
         a  = ''
         z = False
         for x in arguments: #.group(0)
+            x = x[1:]
             if z:
                 a += ' OR '
             z = True
@@ -117,9 +118,9 @@ class Library(object):
             a += 'tytul like ' + '"%' + x + '%"' ' OR '
             a += 'kategoria like ' + '"%' + x + '%" '
         if z and arguments2:
-            a += ' AND '
+            a += 'AND '
         if arguments2:
-            a += 'EXISTS (SELECT * FROM listaTagu JOIN Tagi ON listaTagu.idTag = Tagi.idTag WHERE Ksiazka.idKsiazka = listaTagu.idKsiazka AND'
+            a += 'EXISTS (SELECT * FROM listaTagu LEFT JOIN Tagi ON listaTagu.idTag = Tagi.idTag WHERE Ksiazka.idKsiazka = listaTagu.idKsiazka AND '
 
         z = False;
         for x in arguments2:
@@ -127,7 +128,7 @@ class Library(object):
             if z:
                 a += ' OR '
             z = True
-            a += 'Tagi.nazwaTagu LIKE %' + x + '% '
+            a += 'Tagi.nazwaTagu LIKE "%' + x + '%" '
 
         if z:
             a += ')'    

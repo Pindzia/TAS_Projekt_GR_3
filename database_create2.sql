@@ -101,14 +101,14 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `tas`.`Tag`
+-- Table `tas`.`Tagi`
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `tas`.`Tagi` ;
 
 CREATE TABLE IF NOT EXISTS `tas`.`Tagi` (
   `idTag` INT NOT NULL AUTO_INCREMENT COMMENT '',
   `nazwaTagu` VARCHAR(45) NOT NULL COMMENT '',
-  PRIMARY KEY (`id_Tag`)  COMMENT '')
+  PRIMARY KEY (`idTag`)  COMMENT '')
 ENGINE = InnoDB;
 
 
@@ -120,12 +120,12 @@ DROP TABLE IF EXISTS `tas`.`listaTagu` ;
 CREATE TABLE IF NOT EXISTS `tas`.`listaTagu` (
   `idTag` INT NOT NULL COMMENT '',
   `idKsiazka` INT NOT NULL COMMENT '',
-  INDEX `fk_listaTagu_Tag1_idx` (`id_Tag` ASC)  COMMENT '',
-  PRIMARY KEY (`id_Tag`, `idKsiazka`)  COMMENT '',
+  INDEX `fk_listaTagu_Tag1_idx` (`idTag` ASC)  COMMENT '',
+  PRIMARY KEY (`idTag`, `idKsiazka`)  COMMENT '',
   INDEX `fk_listaTagu_Ksiazka1_idx` (`idKsiazka` ASC)  COMMENT '',
   CONSTRAINT `fk_listaTagu_Tag1`
-    FOREIGN KEY (`id_Tag`)
-    REFERENCES `tas`.`Tag` (`id_Tag`)
+    FOREIGN KEY (`idTag`)
+    REFERENCES `tas`.`Tag` (`idTag`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_listaTagu_Ksiazka1`
