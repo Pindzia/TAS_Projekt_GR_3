@@ -1,7 +1,7 @@
 {% load staticfiles %}
 
 
-            <div class="product">
+            <div class="product" style="display: block; min-height: 400px;">
               <ul class="allpr">
 
                     {% for book in sorted_list %}
@@ -33,14 +33,15 @@
                     {% endfor %}
 
               </ul>
-
-                    <form method="get" action="">
-                      <button type="submit" name="previous" value="1">Poprzednia strona</button>
-                    </form>
-                    {{ page }}
-                    <form method="get" action="">
-                      <button type="submit" name="next" value="1">Następna strona</button>
-                    </form>
-
+          
 
             </div>
+              <div style="margin: 0 auto; width: 450px; position: relative;">
+               <form style="display:inline-block" method="get" action="">
+                 <button type="submit" name="previous" value="1">Poprzednia strona</button>
+               </form>
+                <p style="display: inline-block; margin: 5px 70px">{{ page }}</p>
+                <form style="display:inline-block; margin: 0" method="get" action="">
+                  <button type="submit" name="next" value="1">Następna strona</button>
+                </form>
+              </div>
