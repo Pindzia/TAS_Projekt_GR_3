@@ -104,6 +104,8 @@ class Library(object):
         
         p = re.compile(ur'([\w]+)')
         arguments = re.findall(p,query)
+        q = re.compile(ur'(#[\w]+)')
+        arguments2 = re.findall(q,query)
         
         a  = ''
         z = False
@@ -111,8 +113,27 @@ class Library(object):
             if z:
                 a += ' OR '
             z = True
-            a += "'" + x + "'" + 'IN (autor, tytul, kategoria)'
+            a += 'autor like ' + '"%' + x + '%"' ' OR '
+            a += 'tytul like ' + '"%' + x + '%"' ' OR '
+            a += 'kategoria like ' + '"%' + x + '%" '
+        if z and arguments2:
+            a += ' AND '
+        if arguments2:
+            a += 'EXISTS (SELECT * FROM listaTagu JOIN Tagi ON listaTagu.idTag = Tagi.idTag WHERE Ksiazka.idKsiazka = listaTagu.idKsiazka AND'
+
+        z = False;
+        for x in arguments2:
+            x = x[1:]
+            if z:
+                a += ' OR '
+            z = True
+            a += 'Tagi.nazwaTagu LIKE %' + x + '% '
+
+        if z:
+            a += ')'    
         a+= ";"
+        print 'a = '
+        print a
         return mysql.get("SELECT * FROM Ksiazka WHERE %s;" % (a), 20)
             
 def main():
