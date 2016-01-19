@@ -142,6 +142,16 @@
                             <div class="thumb">
                                 <img src="{% static book.4 %}" height="150" width="100">
                             </div>
+
+                          <form method="post" action="/add/{{ book.0 }}/1/"> <!--DO POPRAWY -->
+ 
+                          {% csrf_token %}
+                         
+                          <div class="form-group" action=>
+                              <input type="submit" class="btn" value="Dodaj do koszyka" name="add">
+                          </div>
+                          
+                          </form>
                             <div class="price">
                                 Cena
                                 <span> {{ book.3 }} </span>
