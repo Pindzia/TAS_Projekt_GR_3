@@ -30,40 +30,9 @@
           <div class="products" style="padding:0px 0">
 
             <h1>Wyniki wyszukiwania</h1>
-            <div class="product">
-              <ul class="allpr">
 
+            {% include "books_list.html" %}
 
-                    {% for book in sorted_list %}
-                        <li>
-                            <div class="title">
-                                <h2> {{ book.2 }} </h2>
-                            </div>
-                            <div class="thumb">
-                                <img src="{% static book.4 %}" height="150" width="100">
-                            </div>
-
-                          <form method="post" action="/add/{{ book.0 }}/1/">
- 
-                          {% csrf_token %}
-                         
-                          <div class="form-group" action=>
-                              <input type="submit" class="btn" value="Dodaj do koszyka" name="add">
-                          </div>
-                          
-                          </form>
-                            <div class="price">
-                                Cena
-                                <span> {{ book.3 }} </span>
-                            </div>
-                            <div class="desc">
-                                <h4> {{ book.1 }} </h4>
-                                {{ book.5 }}
-                            </div>
-                    {% endfor %}
-
-              </ul>
-            </div>
           </div>
         </div>
       </div>

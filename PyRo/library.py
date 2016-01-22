@@ -33,14 +33,18 @@ class Library(object):
         except:
             return "Najprawdopodobniej podales zle ID ksiazki lub wystapil blad w library.py"
 
-    def getBook_sort(self, by_what, order, rows):
+    def getBook_sort(self, by_what, order, rows, page):
         """Zwraca posortowana liste ksiazek."""
         """ mysql.check przepuszcza zmienna przez regex'a który sprawdza czy order lub to jak sortujemy przy przekazywaniu zmiennych nie ma w sobie znaków specjalnych  """
         #if mysql.check(order) and mysql.check(by_what):
         try:
-            return mysql.get("SELECT * FROM Ksiazka ORDER BY %s %s;" % (by_what, order), rows)
+            book_list = mysql.get("SELECT * FROM Ksiazka ORDER BY %s %s;" % (by_what, order), rows)
+            if page == 0:
+                return book_list[0:6]
+            else:
+                return book_list[page*6:page*6+6]
         except:
-            return "Najprawdopodobniej podales zle ID ksiazki lub wystapil blad w library.py"
+            return "getBook_sort: Najprawdopodobniej podales zle ID ksiazki lub wystapil blad w library.py"
         #else:
             #return "Błędnie podane ID lub Próba SQL Injection"
             
@@ -55,7 +59,7 @@ class Library(object):
         try:
             return mysql.get("SELECT * FROM Ksiazka where idKsiazka IN (select idKsiazka from listaKoszyka where idKoszyk = (select idKoszyk from Koszyk where idUzytkownik = 1));", rows)
         except:
-            return "getCar: Najprawdopodobniej podales zle ID ksiazki lub wystapil blad w library.py"
+            return "getCart: Najprawdopodobniej podales zle ID ksiazki lub wystapil blad w library.py"
 
     def deleteBook(self, book_id):
         """Usuwa ksiazke z koszyka."""
@@ -97,10 +101,8 @@ class Library(object):
         
         return "Gratulujemy Pomyślnej Rejestracji"
 
-    def search(self, query):
+    def search(self, query, page):
         """ Zwraca wynik wyszukiwania w bazie ksiazek. """
-
-        # DODAC SORTOWANIE!!!!!
         
         p = re.compile(ur'( [\w]+|^[\w]+)')
         arguments = re.findall(p,query)
@@ -135,7 +137,13 @@ class Library(object):
         a+= ";"
         print 'a = '
         print a
-        return mysql.get("SELECT * FROM Ksiazka WHERE %s;" % (a), 20)
+        
+        book_list = mysql.get("SELECT * FROM Ksiazka WHERE %s;" % (a), 100)
+
+        if page == 0:
+            return book_list[0:6]
+        else:
+            return book_list[page*6:page*6+6]
             
 def main():
     """ Glowna funkcja, uruchamiana przy inicjalizacji PyRo. """
@@ -146,6 +154,7 @@ def main():
 
     # Polacz z PyRo
     library = Library()
+
     #library.registry('Pindzia', 'qwert123', 'qwert123', 'SerdeczneJP 3', 700880774, 'jezuspan@pieklo.eu', 20)
     Pyro4.Daemon.serveSimple(
             {

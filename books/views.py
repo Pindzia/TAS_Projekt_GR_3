@@ -3,19 +3,30 @@ from __init__ import pyro
 from django.shortcuts import redirect
 
 
-def home(request, by_what='tytul'):
+def home(request, page=0, by_what='tytul'):
     """ Strona glowna. Parametr 'by_what' mowi nam po czym sortujemy liste. """
 
-    if request.POST.get('search'):
-        return redirect('/search/' + request.POST.get('query'))
+    page = int(page)
 
-    sort = by_what
+    if request.POST.get('search'):
+        return redirect('/search/%s/%s' % (request.POST.get('query'), 0))
+
+    if request.GET.get('next'):
+        page += 1
+        return redirect('/%s/%s/' % (page, by_what))
+
+    elif request.GET.get('previous'):
+        if page == 0:
+            pass
+        else:
+            page -= 1
+        return redirect('/%s/%s/' % (page, by_what))
     
-    book_list = pyro.library.getBook_list(20)
-    sorted_list = pyro.library.getBook_sort(by_what, 'ASC', 30)
+    book_list = pyro.library.getBook_list(100)
+    sorted_list = pyro.library.getBook_sort(by_what, 'ASC', 100, int(page))
     
     template = "index.html"
-    context = {'book_list':book_list, 'sorted_list':sorted_list, 'sort':sort}
+    context = {'book_list':book_list, 'sorted_list':sorted_list, 'sort':by_what, 'page':page}
 
     return render(request, template, context)
 
@@ -30,16 +41,29 @@ def test(request):
 
     return render(request, template, context)
 
-def search(request, query):
+def search(request, query, page):
     """Strona wyszukiwania"""
 
-    if request.POST.get('search'):
-        return redirect('/search/' + request.POST.get('query'))
+    page = int(page)
 
-    sorted_list = pyro.library.search(query)
+    if request.POST.get('search'):
+        return redirect('/search/%s/%s' % (request.POST.get('query'), page))
+
+    if request.GET.get('next'):
+        page += 1
+        return redirect('/search/%s/%s' % (query, page))
+
+    elif request.GET.get('previous'):
+        if page == 0:
+            pass
+        else:
+            page -= 1
+        return redirect('/search/%s/%s' % (query, page))
+
+    sorted_list = pyro.library.search(query, page)
 
     template = "search.html"
-    context = {'sorted_list':sorted_list}
+    context = {'sorted_list':sorted_list, 'page':page}
 
     return render(request, template, context)
 
@@ -53,15 +77,22 @@ def cart(request):
     return render(request, template, context)
 
 def add(request, book_id, ilosc):
-    """ Dodawanie ksiazki."""
+    """ Dodawanie ksiazki do koszyka. """
 
     pyro.library.addBook(book_id, ilosc)
 
     return redirect("/")
 
 def delete(request, book_id):
-    """ Usuwanie ksiazki."""
+    """ Usuwanie ksiazki z koszyka. """
 
     print pyro.library.deleteBook(book_id)
+
+    return redirect("/cart/")
+
+def next(request, book_list):
+    """ Wyswietlenie kolejnej strony z ksiazkami. """
+
+    
 
     return redirect("/cart/")

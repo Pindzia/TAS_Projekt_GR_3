@@ -1,0 +1,46 @@
+{% load staticfiles %}
+
+
+            <div class="product">
+              <ul class="allpr">
+
+                    {% for book in sorted_list %}
+                        <li>
+                            <div class="title">
+                                <h2> {{ book.2 }} </h2>
+                            </div>
+                            <div class="thumb">
+                                <img src="{% static book.4 %}" height="150" width="100">
+                            </div>
+
+                          <form method="post" action="/add/{{ book.0 }}/1/"> <!--DO POPRAWY -->
+ 
+                          {% csrf_token %}
+                         
+                          <div class="form-group" action=>
+                              <button type="submit">Dodaj do koszyka</button>
+                          </div>
+                          
+                          </form>
+                            <div class="price">
+                                Cena
+                                <span> {{ book.3 }} </span>
+                            </div>
+                            <div class="desc">
+                                <h4> {{ book.1 }} </h4>
+                                {{ book.5 }}
+                            </div>
+                    {% endfor %}
+
+              </ul>
+
+                    <form method="get" action="">
+                      <button type="submit" name="previous" value="1">Poprzednia strona</button>
+                    </form>
+                    {{ page }}
+                    <form method="get" action="">
+                      <button type="submit" name="next" value="1">Następna strona</button>
+                    </form>
+
+
+            </div>
