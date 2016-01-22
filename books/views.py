@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from __init__ import pyro
 from django.shortcuts import redirect
+from django.contrib.sessions.backends.signed_cookies import SessionStore
 
 
 def home(request, page=0, by_what='tytul'):
@@ -24,7 +25,7 @@ def home(request, page=0, by_what='tytul'):
     
     book_list = pyro.library.getBook_list(100)
     sorted_list = pyro.library.getBook_sort(by_what, 'ASC', 100, int(page))
-    
+
     template = "index.html"
     context = {'book_list':book_list, 'sorted_list':sorted_list, 'sort':by_what, 'page':page}
 
@@ -32,9 +33,15 @@ def home(request, page=0, by_what='tytul'):
 
 def test(request):
     """ Strona testowa. """
-   	
+
     if request.POST.get('register'):
         pyro.library.registry(request.POST.get('login'),request.POST.get('password'),request.POST.get('password2'),request.POST.get('adres'),request.POST.get('nrtel'),20)
+
+    session = SessionStore() # tworzymy nowy SessionStore
+    session['foo'] = 'bar' # przypisuje zmienna "foo"
+    session.save() # zapisujemy sesje
+    key = session.session_key # zapisujemy klucz sesyjny
+    global key # czynimy klucz globalnym
 
     template = "test.html"
     context = {}
@@ -69,6 +76,9 @@ def search(request, query, page):
 
 def cart(request):
     
+    session = SessionStore(session_key = key) # tworzymy SessionStore z naszym kluczem
+    print session['foo'] # odczytujemy dane z naszej sesji
+
     cart_list = pyro.library.getCart_list(20)
 
     template = "cart.html"
@@ -87,12 +97,5 @@ def delete(request, book_id):
     """ Usuwanie ksiazki z koszyka. """
 
     print pyro.library.deleteBook(book_id)
-
-    return redirect("/cart/")
-
-def next(request, book_list):
-    """ Wyswietlenie kolejnej strony z ksiazkami. """
-
-    
 
     return redirect("/cart/")
