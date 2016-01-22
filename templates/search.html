@@ -1,0 +1,77 @@
+{% load staticfiles %}
+
+<!DOCTYPE html>
+<html lang="pl">
+
+
+<head>
+  <meta charset="UTF-8">
+  <title>Szczęśliwa księgarnia</title>
+
+  <script src="{% static 'js/jquery.min.js' %}"></script>
+  <!-- bxSlider Javascript file -->
+  <script src="{% static 'js/jquery.bxslider.min.js' %}"></script>
+  <script src="{% static 'js/app.js' %}"></script>
+  <!-- bxSlider CSS file -->
+  <link href="{% static 'css/jquery.bxslider.css' %}" rel="stylesheet" />
+  <link rel="stylesheet" href="{% static 'css/main.css' %}">
+</head>
+
+
+<body>
+
+{% include "menu.html" %}
+
+  <section class="middle">
+    <div class="wrapper">
+      <div class="grid">
+        <div class="col-1-1">
+
+          <div class="products" style="padding:0px 0">
+
+            <h1>Wyniki wyszukiwania</h1>
+            <div class="product">
+              <ul class="allpr">
+
+
+                    {% for book in sorted_list %}
+                        <li>
+                            <div class="title">
+                                <h2> {{ book.2 }} </h2>
+                            </div>
+                            <div class="thumb">
+                                <img src="{% static book.4 %}" height="150" width="100">
+                            </div>
+
+                          <form method="post" action="/add/{{ book.0 }}/1/">
+ 
+                          {% csrf_token %}
+                         
+                          <div class="form-group" action=>
+                              <input type="submit" class="btn" value="Dodaj do koszyka" name="add">
+                          </div>
+                          
+                          </form>
+                            <div class="price">
+                                Cena
+                                <span> {{ book.3 }} </span>
+                            </div>
+                            <div class="desc">
+                                <h4> {{ book.1 }} </h4>
+                                {{ book.5 }}
+                            </div>
+                    {% endfor %}
+
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+{% include "footer.html" %}
+
+</body>
+
+</html>

@@ -7,12 +7,12 @@ def home(request, by_what='tytul'):
     """ Strona glowna. Parametr 'by_what' mowi nam po czym sortujemy liste. """
 
     if request.POST.get('search'):
-        return redirect('/search/' + request.POST.get('query') + '/tytul/')
+        return redirect('/search/' + request.POST.get('query'))
 
     sort = by_what
     
     book_list = pyro.library.getBook_list(20)
-    sorted_list = pyro.library.getBook_sort(by_what, 'ASC', 20)
+    sorted_list = pyro.library.getBook_sort(by_what, 'ASC', 30)
     
     template = "index.html"
     context = {'book_list':book_list, 'sorted_list':sorted_list, 'sort':sort}
@@ -30,18 +30,16 @@ def test(request):
 
     return render(request, template, context)
 
-def search(request, query, by_what):
+def search(request, query):
     """Strona wyszukiwania"""
 
     if request.POST.get('search'):
-        return redirect('/search/' + request.POST.get('query') + '/tytul/')
+        return redirect('/search/' + request.POST.get('query'))
 
-    book_list = pyro.library.getBook_list(20)
     sorted_list = pyro.library.search(query)
-    print query
 
-    template = "index.html"
-    context = {'book_list':book_list, 'sorted_list':sorted_list}
+    template = "search.html"
+    context = {'sorted_list':sorted_list}
 
     return render(request, template, context)
 

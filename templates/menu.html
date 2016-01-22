@@ -1,0 +1,53 @@
+{% load staticfiles %}
+
+  <header>
+    <div class="wrapper">
+      <div class="logo">
+        <a href="/">
+          <img src="{% static 'images/logo.png' %}" alt="">
+        </a>
+      </div>
+    </div>
+    <nav>
+      <div class="wrapper">
+        <div class="grid">
+          <div class="col-9-12">
+
+            <ul>
+              <li><a href="">Link 1</a></li>
+              <li><a href="">Link 2</a></li>
+              <li><a href="">Link 3</a></li>
+              <li>
+      <form method="post" action="">
+ 
+			{% csrf_token %}
+		 
+			<div class="form-group" action=>
+			    <input type="text" name="query"/>
+			    <input type="submit" class="btn" value="Szukaj" name="search">
+			</div>
+			
+		  </form>
+		
+            </ul>
+
+          </div>
+          <div class="col-3-12">
+            <span class="cart"><a href="/cart/">koszyk</a></span>
+          </div>
+        </div>
+      </div>
+    </nav>
+  </header>
+  <div class="wrapper">
+    <div class="grid">
+      <div class="col-3-12 balans push-right">
+        <div class="grid">
+          <div class="col-9-12 text-left">
+            <span>Obecnie</span>
+          </div>
+          <div class="col-3-12 text-right">0.00 zł</div>
+        </div>
+      </div>
+    </div>
+  </div>
