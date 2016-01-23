@@ -82,6 +82,8 @@
         document.getElementById(szukaneId).value = zwieksz;
 
         usuwanie(nr);
+        //do zrobienia
+        //lacznaKwota(zwieksz);
     }
 
     function decrement(nr)
@@ -100,7 +102,22 @@
         }
     }
 
-    function lacznaKwota()
+
+    function dodajKwote(kasaZaKsiazke)
+    {
+      var zmienna = document.getElementById('kwota');
+
+      kaska = zmienna.innerHTML;
+
+      kaska = parseFloat(kaska) + parseFloat(kasaZaKsiazke);
+
+      kaska = kaska + ' zł';
+
+      document.getElementById('kwota').innerHTML = kaska;
+    }
+
+    //do zrobienia przemnażanie kwoty za dana książkę przez jej ilość
+    function lacznaKwota(liczba)
     {
       var suma = 0.00;
       var kwota = String(suma) + ' zł';

@@ -569,3 +569,19 @@ input[id*="ilosc"]
 {
   color: #888;
 }
+/* dodaj do koszyka BUTTON */
+.form-group button
+{
+  height: 30px;
+  border-radius: 10px;
+  background: #be0c3e;
+  color: #fff;
+  font-family: Arial;
+  box-shadow: 1px 1px 1px #000;
+}
+.form-group button:hover
+{
+  cursor: pointer;
+  background: #900f3f;
+  box-shadow: inset 1px 1px 1px #000;
+}

@@ -13,6 +13,8 @@
   <script src="{% static 'js/jquery.bxslider.min.js' %}"></script>
   <script src="{% static 'js/app.js' %}"></script>
   <!-- bxSlider CSS file -->
+  <script src="static/static_dirs/js/koszykowy.js"></script>
+  <!-- koszykowe funkcje -->
   <link href="{% static 'css/jquery.bxslider.css' %}" rel="stylesheet" />
   <link rel="stylesheet" href="{% static 'css/main.css' %}">
 </head>
@@ -46,7 +48,7 @@
                           {% csrf_token %}
                          
                           <div class="form-group" action=>
-                              <button type="submit">Dodaj do koszyka</button>
+                              <button type="submit" onClick="dodajKwote({{ book.3 }});">Dodaj do koszyka</button>
                           </div>
                           
                         </form>
