@@ -1,3 +1,5 @@
+    var kaska = document.getElementById('kwota').innerHTML;
+
     //koszyk
 
     function usun(nr)
