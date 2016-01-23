@@ -24,14 +24,17 @@ def home(request, page=0, by_what='tytul'):
     
     book_list = pyro.library.getBook_list(100)
     sorted_list = pyro.library.getBook_sort(by_what, 'ASC', 100, int(page))
+    price = pyro.library.getBook_price()[0][0]
 
     template = "index.html"
-    context = {'book_list':book_list, 'sorted_list':sorted_list, 'sort':by_what, 'page':page}
+    context = {'book_list':book_list, 'sorted_list':sorted_list, 'sort':by_what, 'page':page, 'price':price}
 
     return render(request, template, context)
 
 def test(request):
     """ Strona testowa. """
+
+    price = pyro.library.getBook_price()[0][0]
 
     if request.POST.get('register'):
         pyro.library.registry(request.POST.get('login'),request.POST.get('password'),request.POST.get('password2'),request.POST.get('adres'),request.POST.get('nrtel'),20)
@@ -40,7 +43,7 @@ def test(request):
     print request.session.get('foo') # tak odczytujemy wartosci z sesji
 
     template = "test.html"
-    context = {}
+    context = {'price':price}
 
     return render(request, template, context)
 
@@ -65,8 +68,10 @@ def search(request, query, page):
 
     sorted_list = pyro.library.search(query, page)
 
+    price = pyro.library.getBook_price()[0][0]
+
     template = "search.html"
-    context = {'sorted_list':sorted_list, 'page':page}
+    context = {'sorted_list':sorted_list, 'page':page, 'price': price}
 
     return render(request, template, context)
 
@@ -74,8 +79,10 @@ def cart(request):
 
     cart_list = pyro.library.getCart_list(20)
 
+    price = pyro.library.getBook_price()[0][0]
+
     template = "cart.html"
-    context = {'cart_list':cart_list }
+    context = {'cart_list':cart_list, 'price': price}
 
     return render(request, template, context)
 

@@ -53,7 +53,13 @@ class Library(object):
             return mysql.add("INSERT INTO listaKoszyka (idKsiazka, idKoszyk, ilosc) VALUES (%s, %s, %s);" % (book_id, koszyk_id, ilosc))
         except:
             return "addBook: Najprawdopodobniej podales zle ID ksiazki lub wystapil blad w library.py"
-    
+
+    def getBook_price(self):
+        try:
+            return mysql.get("SELECT ROUND(SUM(cena), 2) FROM Ksiazka where idKsiazka IN (select idKsiazka from listaKoszyka where idKoszyk = (select idKoszyk from Koszyk where idUzytkownik = 1));", 1)
+        except:
+            return "addBook: Najprawdopodobniej podales zle ID ksiazki lub wystapil blad w library.py"
+
     def getCart_list(self, rows):
         """Zwraca listę wszystkich ksiazek w koszyku."""
         try:
