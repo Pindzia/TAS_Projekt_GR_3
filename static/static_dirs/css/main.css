@@ -402,6 +402,7 @@ header {
   .middle .desc {
     color: #be0c3e;
     font: 400 14px Arial;
+    margin: 10px;
     display: none; }
   .middle .price {
     color: #656565;
@@ -420,7 +421,11 @@ h1 {
 
 .slider-2 {
   margin-top: 100px; }
-
+  
+h4
+{
+  margin: 10px;
+}
 /*# sourceMappingURL=main.css.map */
 
 
@@ -572,7 +577,8 @@ input[id*="ilosc"]
 /* dodaj do koszyka BUTTON */
 .form-group button
 {
-  height: 30px;
+  height: 25px;
+  margin: 0;
   border-radius: 10px;
   background: #be0c3e;
   color: #fff;
