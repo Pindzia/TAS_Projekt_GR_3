@@ -555,7 +555,7 @@ img.cross
 .rzad .btn
 {
   position: absolute;
-  top: 77px;
+  top: 75px;
   left: 850px;
 
   height: 50px;
@@ -564,4 +564,8 @@ img.cross
   border: 0;
 
   cursor: pointer;
+}
+input[id*="ilosc"]
+{
+  color: #888;
 }
