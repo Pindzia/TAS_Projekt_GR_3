@@ -12,6 +12,7 @@
   <script src="{% static 'js/jquery.bxslider.min.js' %}"></script>
   <script src="{% static 'js/app.js' %}"></script>
   <!-- bxSlider CSS file -->
+  <script src="{% static 'js/koszykowy.js' %}"></script>
   <link href="{% static 'css/jquery.bxslider.css' %}" rel="stylesheet" />
   <link rel="stylesheet" href="{% static 'css/main.css' %}">
 </head>
@@ -31,7 +32,7 @@
             <ul>
 
               {% for book in cart_list %}
-              <li class="rzad">
+              <li id="rzad{{ book.0 }}" class="rzad">
 
                 <img alt="" src="{% static book.4 %}" height="130" width="90">
 
@@ -40,16 +41,24 @@
                 <p class="cena">{{ book.3 }} zł</p>
 
                 <div class="ileBox">
-                  <span class="prev">&lt;</span>
-                  <input type="text" name="ilosc" placeholder="1">
-                  <span class="next">&gt;</span>
+                  <span class="prev" onClick="decrement({{ book.0 }});" title="mniej">&lt;</span>
+                  <input id="ilosc{{ book.0 }}" type="text" name="ilosc" value="1">
+                  <span class="next" onClick="increment({{ book.0 }});" title="więcej">&gt;</span>
                 </div>
 
                 <form method="post" action="delete/{{ book.0 }}/">
                   {% csrf_token %}
-                  <button class="btn" type="submit">
-                    <img class="cross" alt="usun" src="{% static 'images/cross.png' %}">
+                  <button class="btn" type="submit" title="usuń">
+                    <img class="cross" alt="usuń" src="{% static 'images/cross.png' %}">
                   </button>
+                </form>
+
+                <form id="formularz{{ book.0 }}" method="post" action="delete/{{ book.0 }}/">
+ 
+                  {% csrf_token %}
+                         
+                  <button class="btn" type="submit" title="usuń" style="top: 75px; left:675px; opacity: 0">
+                  </button>     
                 </form>
 
               </li>
