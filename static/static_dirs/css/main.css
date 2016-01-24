@@ -421,7 +421,7 @@ h1 {
 
 .slider-2 {
   margin-top: 100px; }
-  
+
 h4
 {
   margin: 10px;
@@ -510,11 +510,12 @@ img.cross
 
   cursor: pointer;
 }
-.rzad .prev, .rzad .next
+.rzad .prev, 
+.rzad .next
 {
   cursor:pointer;
   position:absolute;
-  top:50px;
+  top:52px;
   margin: 20px;
   height: 15px;
   overflow:hidden;
@@ -524,9 +525,6 @@ img.cross
   -moz-border-radius:3px;
   -webkit-border-radius:3px;
   border-radius:3px;
-  -moz-box-shadow:0 1px 2px #000;
-  -webkit-box-shadow:0 1px 2px #000;
-  box-shadow:0 1px 2px #000;
   transform:scale(2,3);
   color: #d9542b;
   /*font-weight: bold;*/
@@ -538,12 +536,28 @@ img.cross
   left:0;
   background:#fff;
   text-align: center;
+  -moz-box-shadow: -0.5px 0.5px 0.5px #000;
+  -webkit-box-shadow: -0.5px 0.5px 0.5px #000;
+  box-shadow: -0.5px 0.5px 0.5px #000;
 }
 .rzad .next
 {
   left: 100px;
   background:#fff;
   text-align: center;
+  -moz-box-shadow:0.5px 0.5px 0.5px #000;
+  -webkit-box-shadow:0.5px 0.5px 0.5px #000;
+  box-shadow:0.5px 0.5px 0.5px #000;
+}
+.rzad .prev:hover
+{
+  -moz-box-shadow:0.5px -0.5px 0.5px #000;
+  -webkit-box-shadow:0.5px -0.5px 0.5px #000;
+  box-shadow:0.5px -0.5px 0.5px #000;
+}
+.rzad .next:hover
+{
+  box-shadow: -0.5px -0.5px 0.5px #000;
 }
 .rzad input
 {
@@ -575,7 +589,7 @@ input[id*="ilosc"]
   color: #888;
 }
 /* dodaj do koszyka BUTTON */
-.form-group button
+button
 {
   height: 25px;
   margin: 0;
@@ -585,7 +599,7 @@ input[id*="ilosc"]
   font-family: Arial;
   box-shadow: 1px 1px 1px #000;
 }
-.form-group button:hover
+button:hover
 {
   cursor: pointer;
   background: #900f3f;
