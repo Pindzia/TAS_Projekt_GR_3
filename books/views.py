@@ -86,6 +86,20 @@ def cart(request):
 
     return render(request, template, context)
 
+def order(request):
+
+    if request.POST.get('confirm'):
+        print 'confirm' # TUTAJ FUNKCJA DO FINALIZACJI TRANSAKCJI
+
+    cart_list = pyro.library.getCart_list(20)
+
+    price = pyro.library.getBook_price()[0][0]
+
+    template = "order.html"
+    context = {'cart_list':cart_list, 'price': price}
+
+    return render(request, template, context)
+
 def add(request, book_id, ilosc):
     """ Dodawanie ksiazki do koszyka. """
 
