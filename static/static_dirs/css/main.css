@@ -605,3 +605,18 @@ button:hover
   background: #900f3f;
   box-shadow: inset 1px 1px 1px #000;
 }
+.sort ul li:hover
+{
+  color: #be0c3e;
+  text-decoration: underline;
+}
+.stopka
+{
+  position: relative;
+
+  margin: 0 auto;
+  width: 500px;
+  border: 1px solid grey;
+
+  height: 100px;
+}

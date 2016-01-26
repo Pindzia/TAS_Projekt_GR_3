@@ -48,7 +48,7 @@
                           {% csrf_token %}
                          
                           <div class="form-group" action=>
-                              <button type="submit" onClick="dodajKwote({{ book.3 }});">Dodaj do koszyka</button>
+                              <button type="submit">Dodaj do koszyka</button>
                           </div>
                           
                         </form>
@@ -67,24 +67,25 @@
           </div>
 
           <div class="products" style="padding:50px 0">
-            <div class="grid">
-              <div class="col-5-12 push-right sort">
+            <div class="grid sort">
+
                 <ul>
-
-                  <li>Sortuj po:</li>
-
-                  <!-- Bardzo nieeleganckie - do zmiany. !-->
-                    <li style="padding:0 25px;" {% if sort == 'tytul' %} class="active" {% endif %}>
-                    <a href="/0/tytul/">Nazwa</a></li>
-                    <li style="padding:0 25px;" {% if sort == 'cena' %} class="active" {% endif %}>
-                    <a href="/0/cena/">Cena</a></li>
-                    <li style="padding:0 25px;" {% if sort == 'autor' %} class="active" {% endif %}>
-                    <a href="/0/autor/">Autor</a></li>
-                    <li style="padding:0 25px;" {% if sort == 'kategoria' %} class="active" {% endif %} >
+                  <li style="float: left;">Sortuj po:</li>
+                    
+                    <li style="float: right; padding:0 25px;" {% if sort == 'kategoria' %} class="active" {% endif %} >
                     <a href="/0/kategoria/">Kategoria</a></li>
 
+                    <li style="float: right; padding:0 25px;" {% if sort == 'tytul' %} class="active" {% endif %}>
+                    <a href="/0/tytul/">Nazwa</a></li>
+
+                    <li style="float: right; padding:0 25px;" {% if sort == 'cena' %} class="active" {% endif %}>
+                    <a href="/0/cena/">Cena</a></li>
+                    
+                    <li style="float: right; padding:0 25px;" {% if sort == 'autor' %} class="active" {% endif %}>
+                    <a href="/0/autor/">Autor</a></li>
+                   
+                   </div>
                 </ul>
-              </div>
             </div>
 
             {% include "books_list.html" %}
