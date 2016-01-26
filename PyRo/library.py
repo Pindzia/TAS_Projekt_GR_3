@@ -48,25 +48,33 @@ class Library(object):
         #else:
             #return "Błędnie podane ID lub Próba SQL Injection"
             
-    def addBook(self,book_id,ilosc,koszyk_id=1):
+    def addBook(self, book_id, ilosc):
         try:
-            return mysql.add("INSERT INTO listaKoszyka (idKsiazka, idKoszyk, ilosc) VALUES (%s, %s, %s);" % (book_id, koszyk_id, ilosc))
+            koszyk_id = mysql.get("SELECT idKoszyk FROM Koszyk WHERE status_zamowienia = 0;", 1)
+            return mysql.add("INSERT INTO listaKoszyka (idKsiazka, idKoszyk, ilosc) VALUES (%s, %s, %s);" % (book_id, koszyk_id[0][0], ilosc))
         except:
             return "addBook: Najprawdopodobniej podales zle ID ksiazki lub wystapil blad w library.py"
 
     def getBook_price(self):
         try:
-            return mysql.get("SELECT ROUND(SUM(cena), 2) FROM Ksiazka where idKsiazka IN (select idKsiazka from listaKoszyka where idKoszyk = (select idKoszyk from Koszyk where idUzytkownik = 1));", 1)
+            return mysql.get("SELECT ROUND(SUM(cena), 2) FROM Ksiazka where idKsiazka IN (select idKsiazka from listaKoszyka where idKoszyk = (select idKoszyk from Koszyk where idUzytkownik = 1 and status_zamowienia = 0));", 1)
         except:
             return "addBook: Najprawdopodobniej podales zle ID ksiazki lub wystapil blad w library.py"
 
     def getCart_list(self, rows):
         """Zwraca listę wszystkich ksiazek w koszyku."""
         try:
-            return mysql.get("SELECT * FROM Ksiazka where idKsiazka IN (select idKsiazka from listaKoszyka where idKoszyk = (select idKoszyk from Koszyk where idUzytkownik = 1));", rows)
+            return mysql.get("SELECT * FROM Ksiazka where idKsiazka IN (select idKsiazka from listaKoszyka where idKoszyk = (select idKoszyk from Koszyk where idUzytkownik = 1  and status_zamowienia = 0));", rows)
         except:
             return "getCart: Najprawdopodobniej podales zle ID ksiazki lub wystapil blad w library.py"
 
+    def finalizeOrder(self, user_id):
+        """Zaznacza dany koszyk jako zfinalizowany"""
+        #try:
+        return mysql.add("UPDATE Koszyk SET status_zamowienia = 1 WHERE idUzytkownik = %s AND status_zamowienia = 0; INSERT INTO Koszyk (idUzytkownik, data_realizacji) VALUES (1, '9999-12-31 23:59:59');" % (user_id))
+        #except: 
+        #return "finalizeOrder: Najprawdopodobniej podales zle ID ksiazki lub wystapil blad w library.py"
+    
     def deleteBook(self, book_id):
         """Usuwa ksiazke z koszyka."""
         try:

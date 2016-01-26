@@ -88,8 +88,7 @@ def cart(request):
 
 def order(request):
 
-    if request.POST.get('confirm'):
-        print 'confirm' # TUTAJ FUNKCJA DO FINALIZACJI TRANSAKCJI
+    pyro.library.finalizeOrder(1)
 
     cart_list = pyro.library.getCart_list(20)
 

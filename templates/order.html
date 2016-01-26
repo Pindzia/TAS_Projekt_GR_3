@@ -30,6 +30,9 @@
           
           <div class="koszyk">
 
+              Przesyłkę z książkami nadamy jak tylko (i jeśli) zaksięgujemy pieniądze na koncie. <br>
+              Dziękujemy za zakupy w naszym sklepie i zapraszamy ponownie.
+
             <ul>
 
               {% for book in cart_list %}
@@ -50,17 +53,9 @@
 
               Razem do zapłaty: {{ price }} zł
 
-              <form method="post" action=""> <!--DO POPRAWY -->
-                {% csrf_token %}
-                <div class="form-group">
-                  <button type="submit" name="confirm" value="confirm">Potwierdź zakup</button>
-                </div>           
-              </form>
-              
             </ul>
 
           </div>
-
 
         </div>
       </div>
