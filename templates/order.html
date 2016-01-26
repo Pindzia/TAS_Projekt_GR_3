@@ -42,36 +42,21 @@
                 <p class="cena">{{ book.3 }} zł</p>
 
                 <div class="ileBox">
-                  <span class="prev" onClick="decrement({{ book.0 }});" title="mniej">&lt;</span>
                   <input id="ilosc{{ book.0 }}" type="text" name="ilosc" value="1">
-                  <span class="next" onClick="increment({{ book.0 }});" title="więcej">&gt;</span>
                 </div>
-
-                <form method="post" action="delete/{{ book.0 }}/">
-                  {% csrf_token %}
-                  <button class="btn" type="submit" title="usuń">
-                    <img class="cross" alt="usuń" src="{% static 'images/cross.png' %}">
-                  </button>
-                </form>
-
-                <form id="formularz{{ book.0 }}" method="post" action="delete/{{ book.0 }}/">
- 
-                  {% csrf_token %}
-                         
-                  <button class="btn" type="submit" title="usuń" style="top: 75px; left:675px; opacity: 0">
-                  </button>     
-                </form>
 
               </li>
               {% endfor %}
-              
-              <form method="post" action="/order/">
+
+              Razem do zapłaty: {{ price }} zł
+
+              <form method="post" action=""> <!--DO POPRAWY -->
                 {% csrf_token %}
                 <div class="form-group">
-                  <button type="submit" name="confirm" value="confirm">Przejdź do kasy</button>
+                  <button type="submit" name="confirm" value="confirm">Potwierdź zakup</button>
                 </div>           
               </form>
-
+              
             </ul>
 
           </div>
