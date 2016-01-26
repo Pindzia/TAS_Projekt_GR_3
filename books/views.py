@@ -26,8 +26,11 @@ def home(request, page=0, by_what='tytul'):
     sorted_list = pyro.library.getBook_sort(by_what, 'ASC', 100, int(page))
     price = pyro.library.getBook_price()[0][0]
 
+    if price == None:
+        price = "0"
+
     template = "index.html"
-    context = {'book_list':book_list, 'sorted_list':sorted_list, 'sort':by_what, 'page':page, 'price':price}
+    context = {'book_list':book_list, 'sorted_list':sorted_list, 'sort':by_what, 'page':page + 1, 'price':price}
 
     return render(request, template, context)
 
@@ -35,6 +38,9 @@ def test(request):
     """ Strona testowa. """
 
     price = pyro.library.getBook_price()[0][0]
+
+    if price == None:
+        price = "0"
 
     if request.POST.get('register'):
         pyro.library.registry(request.POST.get('login'),request.POST.get('password'),request.POST.get('password2'),request.POST.get('adres'),request.POST.get('nrtel'),20)
@@ -71,7 +77,7 @@ def search(request, query, page):
     price = pyro.library.getBook_price()[0][0]
 
     template = "search.html"
-    context = {'sorted_list':sorted_list, 'page':page, 'price': price}
+    context = {'sorted_list':sorted_list, 'page':page + 1, 'price': price}
 
     return render(request, template, context)
 
@@ -81,6 +87,9 @@ def cart(request):
 
     price = pyro.library.getBook_price()[0][0]
 
+    if price == None:
+        price = "0"
+
     template = "cart.html"
     context = {'cart_list':cart_list, 'price': price}
 
@@ -88,14 +97,17 @@ def cart(request):
 
 def order(request):
 
-    pyro.library.finalizeOrder(1)
-
     cart_list = pyro.library.getCart_list(20)
 
     price = pyro.library.getBook_price()[0][0]
 
+    if price == None:
+        price = "0"
+
     template = "order.html"
     context = {'cart_list':cart_list, 'price': price}
+
+    pyro.library.finalizeOrder(1)
 
     return render(request, template, context)
 

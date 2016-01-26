@@ -41,12 +41,6 @@
 
                 <p class="cena">{{ book.3 }} zł</p>
 
-                <div class="ileBox">
-                  <span class="prev" onClick="decrement({{ book.0 }});" title="mniej">&lt;</span>
-                  <input id="ilosc{{ book.0 }}" type="text" name="ilosc" value="1">
-                  <span class="next" onClick="increment({{ book.0 }});" title="więcej">&gt;</span>
-                </div>
-
                 <form method="post" action="delete/{{ book.0 }}/">
                   {% csrf_token %}
                   <button class="btn" type="submit" title="usuń">

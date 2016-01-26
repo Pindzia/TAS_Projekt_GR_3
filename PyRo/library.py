@@ -70,15 +70,15 @@ class Library(object):
 
     def finalizeOrder(self, user_id):
         """Zaznacza dany koszyk jako zfinalizowany"""
-        #try:
-        return mysql.add("UPDATE Koszyk SET status_zamowienia = 1 WHERE idUzytkownik = %s AND status_zamowienia = 0; INSERT INTO Koszyk (idUzytkownik, data_realizacji) VALUES (1, '9999-12-31 23:59:59');" % (user_id))
-        #except: 
+        mysql.add("UPDATE Koszyk SET status_zamowienia = 1 WHERE idUzytkownik = 1 AND status_zamowienia = 0;")
+        return mysql.add("INSERT INTO Koszyk (idUzytkownik, data_realizacji) VALUES (1, '9999-12-31 23:59:59');")
         #return "finalizeOrder: Najprawdopodobniej podales zle ID ksiazki lub wystapil blad w library.py"
     
     def deleteBook(self, book_id):
         """Usuwa ksiazke z koszyka."""
         try:
-            return mysql.add("DELETE FROM listaKoszyka WHERE idKoszyk=(SELECT idKoszyk FROM Koszyk WHERE idUzytkownik=1) AND idKsiazka=%s;" % (book_id))
+            koszyk_id = mysql.get("SELECT idKoszyk FROM Koszyk WHERE status_zamowienia = 0;", 1)
+            return mysql.add("DELETE FROM listaKoszyka WHERE idKoszyk=%s AND idKsiazka=%s;" % (koszyk_id[0][0], book_id))
         except:
             return "deleteBook: Najprawdopodobniej podales zle ID ksiazki lub wystapil blad w library.py"
         
